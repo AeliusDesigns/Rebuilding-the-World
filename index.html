@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rebuilding the World - Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebuilding the World - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
 
-<!-- HEADER SECTION -->
+<!-- HEADER -->
 <header class="header">
-  <h1 class="title">Rebuilding the World</h1>
-
-  <!-- Dropdown Navigation -->
-  <div class="dropdown">
-    <button class="dropdown-btn">☰ Menu</button>
-    <div class="dropdown-content">
-      <a href="world_map.html">World Map</a>
-      <a href="world_lore.html">World Lore</a>
+    <h1>Rebuilding the World</h1>
+    <div class="dropdown">
+        <button class="dropbtn">☰ Menu</button>
+        <div class="dropdown-content">
+            <a href="map.html">World Map</a>
+            <a href="world_lore.html">World Lore</a>
+        </div>
     </div>
-  </div>
 </header>
 
-<!-- MAIN CONTENT AREA -->
+<!-- MAIN CONTENT -->
 <div class="container">
-  <h2>Game Management Dashboard</h2>
-  <p>Welcome to the strategy game! Use the options below to manage your nation.</p>
+    <h2>Game Management Dashboard</h2>
+    <p>Welcome! Manage your nation and explore the world.</p>
 
-  <!-- Navigation Buttons -->
-  <div class="button-container">
-    <button onclick="navigateTo('recruitment.html')">Recruit Troops</button>
-    <button onclick="navigateTo('construction.html')">Construct Buildings</button>
-    <button onclick="navigateTo('nation_stats.html')">View Nation Stats</button>
-  </div>
+    <!-- Navigation Buttons -->
+    <div class="button-container">
+        <button onclick="navigateTo('recruitment.html')">Recruit Troops</button>
+        <button onclick="navigateTo('construction.html')">Construct Buildings</button>
+        <button onclick="navigateTo('nation_stats.html')">View Nation Stats</button>
+    </div>
 
-  <!-- Game Updates & Links Section -->
-  <div class="updates">
-    <h2>Game Updates</h2>
-    <p>Latest Patch: Version 1.1 - Stability & Economy Rework</p>
-    <p><a href="#">Click here</a> for the full patch notes.</p>
-  </div>
+    <!-- Game Updates -->
+    <div class="updates">
+        <h2>Game Updates</h2>
+        <p>Latest Patch: Version 1.1 - Stability & Economy Rework</p>
+        <p><a href="#">Click here</a> for full patch notes.</p>
+    </div>
 </div>
 
 </body>
