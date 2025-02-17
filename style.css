@@ -6,7 +6,8 @@ body {
     padding: 0;
 }
 
-/* Header Styling (Same Across All Pages) */
+/* ==================== Header Styling (Same Across All Pages) ==================== */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -24,54 +25,55 @@ h1 {
     margin: 0;
 }
 
-.home-button {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-/* ==================== Landing Page Styles (Only for index.html) ==================== */
-
-body:not(.map-page) #menu-button {
+/* Adjust Menu Button Position */
+#menu-button {
     background: none;
     border: none;
     color: white;
     font-size: 24px;
     cursor: pointer;
+    padding: 10px;
+    margin-right: 10px; /* Prevents it from being too far right */
 }
 
-body:not(.map-page) nav {
+/* Ensure Navigation Menu Is Positioned Correctly */
+nav {
     display: none;
     position: absolute;
     top: 50px;
-    right: 20px;
+    right: 10px; /* Brings it closer */
     background: white;
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-body:not(.map-page) nav ul {
+nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-body:not(.map-page) nav ul li {
+nav ul li {
     padding: 10px;
 }
 
-body:not(.map-page) nav ul li a {
+nav ul li a {
     text-decoration: none;
     color: black;
 }
 
-body:not(.map-page) .hidden {
+.hidden {
     display: none;
 }
 
+/* ==================== Landing Page Styles (Only for index.html) ==================== */
+
 body:not(.map-page) #welcome, 
 body:not(.map-page) #updates {
+    max-width: 800px;  /* Limits width for better readability */
+    margin: 20px auto; /* Centers the section horizontally */
+    text-align: center;
     padding: 20px;
     border-bottom: 1px solid #ddd;
 }
