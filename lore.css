@@ -129,14 +129,14 @@ body.lore-page {
     background: #ff4444;
 }
 
-/* ==================== Pop-up Wiki Page Style ==================== */
-.article-popup {
-    display: none;
+/* ==================== Modal Styling (Larger Article View) ==================== */
+#article-modal {
+    display: none; /* Hidden by default */
     position: fixed;
-    top: 10%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
+    transform: translate(-50%, -50%);
+    width: 70%;
     max-width: 900px;
     background: #1e1e1e;
     padding: 20px;
@@ -147,19 +147,62 @@ body.lore-page {
     overflow-y: auto;
 }
 
-.article-popup h3 {
-    color: #e0bf04;
-    text-align: center;
+/* Modal Content */
+.modal-content {
+    padding: 20px;
 }
 
-.article-popup .close-popup {
-    display: block;
-    text-align: right;
-    font-size: 20px;
+/* Close Button (Fixed in the Top-Right Corner of Modal) */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
     cursor: pointer;
     color: white;
 }
 
-.article-popup .close-popup:hover {
+.close-modal:hover {
     color: #e0bf04;
+}
+
+/* Make the Articles Grid Larger & More Spacious */
+#articles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 per row */
+    gap: 30px; /* Increased spacing */
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Individual Article Styling */
+.lore-article {
+    background: #222;
+    padding: 20px;
+    border-left: 5px solid #e0bf04;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Read More Button */
+.read-more {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #333;
+    color: white;
+    text-align: center;
+    border: 2px solid #888;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.read-more:hover {
+    background: #444;
+    border-color: #e0bf04;
 }
