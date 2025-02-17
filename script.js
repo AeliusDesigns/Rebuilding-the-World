@@ -8,9 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const dropdownMenu = document.getElementById("dropdown-menu");
 
     if (menuButton && dropdownMenu) {
+        console.log("Menu button found!");
         menuButton.addEventListener("click", function () {
             dropdownMenu.classList.toggle("show");
         });
+    } else {
+        console.error("Menu button or dropdown menu not found!");
     }
 
     // ===========================
