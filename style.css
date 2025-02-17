@@ -9,7 +9,7 @@ html, body {
 }
 
 body {
-    background-color: #121212 !important; /* Force dark theme */
+    background-color: #121212 !important;
     color: #ddd !important;
 }
 
@@ -18,23 +18,21 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222; /* Darker header */
+    background-color: #222; 
     padding: 10px 20px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    color: white; /* Ensures all text in the header is white */
+    color: white; 
 }
 
-/* Ensure Header Links & Title are White */
 header h1, 
 header a {
-    color: white !important; /* Force header text to be white */
+    color: white !important; 
     text-decoration: none;
 }
 
-/* Ensure the title is not touching the edge */
 h1 {
     margin: 0;
     padding-left: 10px;
@@ -51,9 +49,9 @@ a:hover {
     color: #fff;
 }
 
-/* Style the Dropdown Button */
+/* Dropdown Button */
 #menu-button {
-    background: #222; /* Dark theme */
+    background: #222; 
     border: 2px solid #888;
     color: white;
     font-size: 24px;
@@ -61,31 +59,28 @@ a:hover {
     padding: 10px;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
-    margin-left: auto; /* Pushes it to the right naturally */
-    margin-right: 40px; /* Prevents it from being too far */
+    margin-left: auto; 
+    margin-right: 40px;
 }
 
-/* Hover Effect */
 #menu-button:hover {
-    background: #444; /* Slightly lighter */
+    background: #444;
     border-color: white;
     transform: scale(1.1);
 }
 
-/* Fix Dropdown Menu Position */
 #dropdown-menu {
     display: none;
     position: absolute;
-    top: 70px; /* Moved down slightly to avoid header overlap */
+    top: 70px; 
     right: 10px;
-    background: #222; /* Dark theme background */
-    border: 1px solid #444; /* Slight border for visibility */
+    background: #222; 
+    border: 1px solid #444;
     padding: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    border-radius: 8px; /* Slight rounding */
+    border-radius: 8px; 
 }
 
-/* Ensure Dropdown Menu Items are Properly Styled */
 #dropdown-menu ul {
     list-style: none;
     padding: 0;
@@ -102,7 +97,6 @@ a:hover {
     display: block;
 }
 
-/* Show Dropdown */
 .show {
     display: block !important;
 }
@@ -132,7 +126,6 @@ body {
     color: white; 
 }
 
-/* Add Interactive Hover Effects */
 #welcome, #updates {
     transition: all 0.3s ease-in-out;
 }
@@ -148,31 +141,30 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #222; /* Matches the header */
+    background-color: #222;
     padding: 10px 20px;
-    text-align: right; /* Aligns content to the right */
-    z-index: 1000; /* Ensures it's above other elements */
+    text-align: right;
+    z-index: 1000;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 50px; /* Makes it visible as a bar */
+    height: 50px; 
 }
 
 /* Discord Button */
 #discord-button {
-    background: #222; /* Same as the header */
+    background: #222; 
     color: white;
     padding: 10px 15px;
     border: 2px solid #888;
-    border-radius: 8px; /* Rounded square */
+    border-radius: 8px; 
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
-    margin-right: 20px; /* Moves it away from the right edge */
+    margin-right: 20px; 
 }
 
-/* Hover Effect */
 #discord-button:hover {
     background: #444;
     border-color: white;
