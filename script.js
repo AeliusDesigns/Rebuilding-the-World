@@ -1,9 +1,9 @@
+// Ensure script is loaded only after the page is ready
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("✅ Page loaded successfully");
+    console.log("JavaScript Loaded Successfully");
 
-  // Function to navigate to different pages
-  window.navigateTo = function (page) {
-    console.log(`🔄 Navigating to: ${page}`);
-    window.location.href = page;
-  };
+    // Function for button navigation
+    window.navigateTo = function (page) {
+        window.location.href = page;
+    };
 });
