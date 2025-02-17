@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Map - Rebuilding the World</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="map.js"></script>
+    <link rel="stylesheet" href="style.css"> <!-- Still needed for the header & footer -->
+    <link rel="stylesheet" href="map.css"> <!-- New Map Styles -->
+    <script defer src="script.js"></script>
 </head>
-<body>
+<body class="map-page">
 
     <!-- Header -->
     <header>
         <h1>Rebuilding the World</h1>
         <nav>
-            <a href="index.html" class="home-button">🏠 Home</a>
+            <a href="index.html" class="home-button">🏠 Dashboard</a>
         </nav>
     </header>
 
     <!-- Sidebar for Layer Controls -->
     <aside id="sidebar">
         <h2>Map Layers</h2>
-        <label><input type="checkbox" id="abovegroundBorders" checked> Aboveground Borders</label>
-        <label><input type="checkbox" id="abovegroundNames" checked> Aboveground Names</label>
+        <label><input type="checkbox" id="abovegroundBorders"> Aboveground Borders</label>
+        <label><input type="checkbox" id="abovegroundNames"> Aboveground Names</label>
         <label><input type="checkbox" id="belowgroundBorders"> Belowground Borders</label>
         <label><input type="checkbox" id="belowgroundNames"> Belowground Names</label>
     </aside>
@@ -33,6 +34,13 @@
         <img id="belowgroundBordersImg" src="maps/belowground_borders.jpg" alt="Belowground Borders">
         <img id="belowgroundNamesImg" src="maps/belowground_names.jpg" alt="Belowground Names">
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <a href="https://discord.gg/YOUR_DISCORD_LINK" target="_blank" id="discord-button">
+            Join Our Discord
+        </a>
+    </footer>
 
 </body>
 </html>
