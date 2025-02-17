@@ -33,7 +33,7 @@ h1 {
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
-    margin-right: 10px; /* Prevents it from being too far right */
+    margin-right: 10px;
 }
 
 /* Ensure Navigation Menu Is Positioned Correctly */
@@ -41,7 +41,7 @@ nav {
     display: none;
     position: absolute;
     top: 50px;
-    right: 10px; /* Brings it closer */
+    right: 10px;
     background: white;
     border: 1px solid #ccc;
     padding: 10px;
@@ -69,13 +69,27 @@ nav ul li a {
 
 /* ==================== Landing Page Styles (Only for index.html) ==================== */
 
+body:not(.map-page) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 80px; /* Ensures content doesn't get blocked by header */
+    text-align: center;
+}
+
+/* Center the Welcome and Updates Sections */
 body:not(.map-page) #welcome, 
 body:not(.map-page) #updates {
-    max-width: 800px;  /* Limits width for better readability */
-    margin: 20px auto; /* Centers the section horizontally */
+    max-width: 800px;
+    margin: 40px auto;
     text-align: center;
-    padding: 20px;
+    padding: 30px;
     border-bottom: 1px solid #ddd;
+    background: #f9f9f9;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 /* ==================== Map Page Styles (Only for map.html) ==================== */
