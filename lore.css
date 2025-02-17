@@ -31,38 +31,34 @@ body.lore-page {
     color: #e0bf04; /* Gold title color */
 }
 
-/* Add Article Button */
-#add-article-btn {
-    display: block;
+/* ==================== Article Controls Styling ==================== */
+#article-controls {
+    text-align: center;
     margin: 20px 0;
+}
+
+#article-controls button {
     padding: 10px 15px;
-    background: #222;
+    font-size: 16px;
+    background: #333;
     color: white;
     border: 2px solid #888;
     border-radius: 8px;
     cursor: pointer;
+    margin: 0 10px;
     transition: all 0.3s ease-in-out;
 }
 
-#add-article-btn:hover {
+#article-controls button:hover {
     background: #444;
-    border-color: white;
+    border-color: #e0bf04;
 }
 
-/* Delete Button Styling */
-.delete-article {
-    background: #b22222; /* Dark red */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
+/* Delete Mode - Highlight Articles to Delete */
+.lore-article.delete-mode {
+    outline: 3px solid #b22222;
+    background: #3a1a1a;
     cursor: pointer;
-    margin-left: 10px;
-    transition: all 0.3s ease-in-out;
-}
-
-.delete-article:hover {
-    background: #ff4444; /* Lighter red */
 }
 
 /* ==================== Lore Articles Grid ==================== */
