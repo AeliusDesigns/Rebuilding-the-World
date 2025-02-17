@@ -14,8 +14,7 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #222; /* Darker header */
-    color: white;
-    padding: 10px 20px; /* Ensures proper spacing */
+    padding: 10px 20px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -42,14 +41,15 @@ a:hover {
 /* Style the Dropdown Button */
 #menu-button {
     background: #222; /* Dark theme */
-    border: 2px solid #888; /* Light gray border */
+    border: 2px solid #888;
     color: white;
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
-    margin-right: 10px;
-    border-radius: 8px; /* Rounded square */
+    border-radius: 8px;
     transition: all 0.3s ease-in-out;
+    margin-left: auto; /* Pushes it to the right naturally */
+    margin-right: 15px; /* Prevents it from being too far */
 }
 
 /* Hover Effect */
@@ -99,21 +99,19 @@ a:hover {
 
 /* ==================== Landing Page Styles (Only for index.html) ==================== */
 
-body:not(.map-page) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding-top: 80px; /* Ensures content doesn't get blocked by header */
-    text-align: center;
+/* Ensure the body layout is correct */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #ddd;
 }
 
-/* Center the Welcome and Updates Sections */
-body:not(.map-page):not(.lore-page) #welcome, 
-body:not(.map-page):not(.lore-page) #updates {
+/* Ensure Welcome & Updates Sections Are Lower */
+#welcome, #updates {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 100px auto 40px auto; /* Moves it down */
     text-align: center;
     padding: 30px;
     border-bottom: 1px solid #444;
@@ -122,17 +120,16 @@ body:not(.map-page):not(.lore-page) #updates {
     border-radius: 10px;
 }
 
-/* Hover Effects on Dashboard Sections */
-body:not(.map-page):not(.lore-page) #welcome, 
-body:not(.map-page):not(.lore-page) #updates {
+/* Add Interactive Hover Effects */
+#welcome, #updates {
     transition: all 0.3s ease-in-out;
 }
 
-body:not(.map-page):not(.lore-page) #welcome:hover, 
-body:not(.map-page):not(.lore-page) #updates:hover {
-    transform: translateY(-5px); /* Slight float */
-    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.6); /* Light aura */
+#welcome:hover, #updates:hover {
+    transform: translateY(-5px); /* Slight floating effect */
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.6); /* Glowing aura */
 }
+
 
 /* ==================== Map Page Styles (Only for map.html) ==================== */
 
