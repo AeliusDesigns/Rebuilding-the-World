@@ -2,12 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Lore Script Loaded!");
 
     const addArticleBtn = document.getElementById("add-article-btn");
+    const deleteArticleBtn = document.getElementById("delete-article-btn");
     const articlesContainer = document.getElementById("articles");
     const articleModal = document.getElementById("article-modal");
     const modalOverlay = document.getElementById("modal-overlay");
     const modalTitle = document.getElementById("modal-title");
     const modalContent = document.getElementById("modal-content");
     const closeModalBtn = document.querySelector(".close-modal");
+
+    let deleteMode = false; // Tracks if delete mode is active
 
     // Load stored articles on page load
     loadArticles();
@@ -18,10 +21,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (title && content) {
             createArticle(title, content);
-            saveArticle(title, content); // Save to localStorage
+            saveArticle(title, content);
         } else {
             alert("Article creation cancelled.");
         }
+    });
+
+    deleteArticleBtn.addEventListener("click", function () {
+        deleteMode = !deleteMode; // Toggle delete mode
+        deleteArticleBtn.style.background = deleteMode ? "#b22222" : "#333"; // Change button color in delete mode
+
+        // Highlight selectable articles when delete mode is active
+        document.querySelectorAll(".lore-article").forEach(article => {
+            if (deleteMode) {
+                article.classList.add("delete-mode");
+                article.addEventListener("click", deleteArticleOnClick);
+            } else {
+                article.classList.remove("delete-mode");
+                article.removeEventListener("click", deleteArticleOnClick);
+            }
+        });
     });
 
     function createArticle(title, content) {
@@ -36,28 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
         readMoreButton.textContent = "Read More";
         readMoreButton.classList.add("read-more");
         readMoreButton.addEventListener("click", function () {
-            modalTitle.textContent = title;
-            modalContent.innerHTML = content.replace(/\n/g, "<br>"); // Preserve formatting
-            articleModal.classList.add("open");
-            articleModal.style.display = "block";
-            modalOverlay.style.display = "block"; // Show overlay
-        });
-
-        // Delete Button
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "🗑 Delete";
-        deleteButton.classList.add("delete-article");
-        deleteButton.addEventListener("click", function () {
-            if (confirm(`Are you sure you want to delete "${title}"?`)) {
-                article.remove();
-                deleteArticle(title); // Remove from localStorage
+            if (!deleteMode) { // Prevents opening modal in delete mode
+                modalTitle.textContent = title;
+                modalContent.innerHTML = content.replace(/\n/g, "<br>");
+                articleModal.classList.add("open");
+                articleModal.style.display = "block";
+                modalOverlay.style.display = "block";
             }
         });
 
         // Append elements
         article.appendChild(articleTitle);
         article.appendChild(readMoreButton);
-        article.appendChild(deleteButton);
         articlesContainer.appendChild(article);
     }
 
@@ -76,8 +85,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Delete article from localStorage
-    function deleteArticle(title) {
+    // Delete article when clicked in delete mode
+    function deleteArticleOnClick(event) {
+        const article = event.currentTarget;
+        const title = article.querySelector("h3").textContent;
+
+        if (confirm(`Are you sure you want to delete "${title}"?`)) {
+            article.remove();
+            removeArticleFromStorage(title);
+        }
+    }
+
+    // Remove article from localStorage
+    function removeArticleFromStorage(title) {
         let articles = JSON.parse(localStorage.getItem("articles")) || [];
         articles = articles.filter(article => article.title !== title);
         localStorage.setItem("articles", JSON.stringify(articles));
@@ -87,13 +107,13 @@ document.addEventListener("DOMContentLoaded", function () {
     closeModalBtn.addEventListener("click", function () {
         articleModal.classList.remove("open");
         articleModal.style.display = "none";
-        modalOverlay.style.display = "none"; // Hide overlay
+        modalOverlay.style.display = "none";
     });
 
     // Close Modal if clicking outside of it
     modalOverlay.addEventListener("click", function () {
         articleModal.classList.remove("open");
         articleModal.style.display = "none";
-        modalOverlay.style.display = "none"; // Hide overlay
+        modalOverlay.style.display = "none";
     });
 });
