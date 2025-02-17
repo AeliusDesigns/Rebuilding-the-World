@@ -11,14 +11,14 @@ app.use(bodyParser.json());
 // Supabase Configuration
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-// ✅ Fetch All Articles
+// Fetch All Articles
 app.get("/articles", async (req, res) => {
     const { data, error } = await supabase.from("lore_articles").select("*");
     if (error) return res.status(500).json({ error: error.message });
     res.json(data);
 });
 
-// ✅ Add a New Article (Only Authorized Users)
+// Add a New Article (Only Authorized Users)
 app.post("/articles", async (req, res) => {
     const { title, content, user_id } = req.body;
 
@@ -39,7 +39,7 @@ app.post("/articles", async (req, res) => {
     res.json({ message: "Article added successfully!", article: data });
 });
 
-// ✅ Delete Article (Only Admins)
+// Delete Article (Only Admins)
 app.delete("/articles/:id", async (req, res) => {
     const { id } = req.params;
     const { user_id } = req.body;
