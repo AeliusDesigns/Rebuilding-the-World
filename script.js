@@ -1,1 +1,1 @@
-console.log("JavaScript is working!");
+console.log("Website loaded successfully!");
