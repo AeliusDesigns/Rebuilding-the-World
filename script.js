@@ -14,24 +14,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // ===========================
     // Handle Map Layer Toggle (For map.html)
     // ===========================
-    const images = {
-        abovegroundBorders: document.getElementById("abovegroundBordersImg"),
-        abovegroundNames: document.getElementById("abovegroundNamesImg"),
-        belowgroundBorders: document.getElementById("belowgroundBordersImg"),
-        belowgroundNames: document.getElementById("belowgroundNamesImg"),
-    };
-
-    const checkboxes = {
-        abovegroundBorders: document.getElementById("abovegroundBorders"),
-        abovegroundNames: document.getElementById("abovegroundNames"),
-        belowgroundBorders: document.getElementById("belowgroundBorders"),
-        belowgroundNames: document.getElementById("belowgroundNames"),
-    };
-
     if (document.body.classList.contains("map-page")) {
+        const images = {
+            abovegroundBorders: document.getElementById("abovegroundBordersImg"),
+            abovegroundNames: document.getElementById("abovegroundNamesImg"),
+            belowgroundBorders: document.getElementById("belowgroundBordersImg"),
+            belowgroundNames: document.getElementById("belowgroundNamesImg"),
+        };
+
+        const checkboxes = {
+            abovegroundBorders: document.getElementById("abovegroundBorders"),
+            abovegroundNames: document.getElementById("abovegroundNames"),
+            belowgroundBorders: document.getElementById("belowgroundBorders"),
+            belowgroundNames: document.getElementById("belowgroundNames"),
+        };
+
         function updateLayers() {
             for (let key in images) {
-                if (images[key]) {
+                if (images[key] && checkboxes[key]) {
                     images[key].style.display = checkboxes[key].checked ? "inline-block" : "none";
                 }
             }
