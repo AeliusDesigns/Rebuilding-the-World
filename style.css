@@ -8,6 +8,11 @@ html, body {
     padding: 0;
 }
 
+body {
+    background-color: #121212 !important; /* Force dark theme */
+    color: #ddd !important;
+}
+
 /* ==================== Header Styling ==================== */
 header {
     display: flex;
@@ -19,6 +24,14 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
+    color: white; /* Ensures all text in the header is white */
+}
+
+/* Ensure Header Links & Title are White */
+header h1, 
+header a {
+    color: white !important; /* Force header text to be white */
+    text-decoration: none;
 }
 
 /* Ensure the title is not touching the edge */
