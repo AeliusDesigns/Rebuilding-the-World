@@ -109,6 +109,36 @@ a:hover {
 
 }
 
+/* ==================== Footer Styling ==================== */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #222; /* Same color as the header */
+    padding: 10px 20px;
+    text-align: right; /* Aligns content to the right */
+}
+
+/* Discord Button */
+#discord-button {
+    display: inline-block;
+    background: #222; /* Same as the header */
+    color: white;
+    padding: 10px 15px;
+    border: 2px solid #888;
+    border-radius: 8px; /* Rounded square */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+#discord-button:hover {
+    background: #444; /* Slightly lighter on hover */
+    border-color: white;
+    transform: scale(1.1);
+}
 
 /* ==================== Landing Page Styles (Only for index.html) ==================== */
 
