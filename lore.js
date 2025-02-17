@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const addArticleBtn = document.getElementById("add-article-btn");
     const articlesContainer = document.getElementById("articles");
+    const articleModal = document.getElementById("article-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalContent = document.getElementById("modal-content");
+    const closeModalBtn = document.querySelector(".close-modal");
 
     addArticleBtn.addEventListener("click", function () {
         // Prompt for article title & content
@@ -18,16 +22,30 @@ document.addEventListener("DOMContentLoaded", function () {
             const articleTitle = document.createElement("h3");
             articleTitle.textContent = title;
 
-            // Add content
-            const articleContent = document.createElement("p");
-            articleContent.textContent = content;
+            // Add event listener to open modal on click
+            article.addEventListener("click", function () {
+                modalTitle.textContent = title;
+                modalContent.textContent = content;
+                articleModal.style.display = "block";
+            });
 
-            // Append to article and container
+            // Append title to article and article to container
             article.appendChild(articleTitle);
-            article.appendChild(articleContent);
             articlesContainer.appendChild(article);
         } else {
             alert("Article creation cancelled.");
+        }
+    });
+
+    // Close modal when the close button is clicked
+    closeModalBtn.addEventListener("click", function () {
+        articleModal.style.display = "none";
+    });
+
+    // Close modal if user clicks outside of the content box
+    window.addEventListener("click", function (event) {
+        if (event.target === articleModal) {
+            articleModal.style.display = "none";
         }
     });
 });
