@@ -49,6 +49,22 @@ body.lore-page {
     border-color: white;
 }
 
+/* Delete Button Styling */
+.delete-article {
+    background: #b22222; /* Dark red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.delete-article:hover {
+    background: #ff4444; /* Lighter red */
+}
+
 /* ==================== Modal Styling ==================== */
 #article-modal {
     display: none; /* Hidden by default */
