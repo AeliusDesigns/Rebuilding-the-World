@@ -1,1 +1,50 @@
+/* ==================== Wiki-Style Layout ==================== */
+body.lore-page {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding-top: 80px; /* Prevents header overlap */
+}
 
+/* Lore Content Container */
+#lore-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Article Formatting */
+.lore-article {
+    background: #222;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #e0bf04; /* Gold border for wiki-style look */
+    border-radius: 5px;
+}
+
+/* Article Titles */
+.lore-article h3 {
+    margin: 0;
+    color: #e0bf04; /* Gold title color */
+}
+
+/* Add Article Button */
+#add-article-btn {
+    display: block;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background: #222;
+    color: white;
+    border: 2px solid #888;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#add-article-btn:hover {
+    background: #444;
+    border-color: white;
+}
