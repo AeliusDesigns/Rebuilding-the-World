@@ -14,7 +14,7 @@ header {
     align-items: center;
     background-color: #333;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 20px; 
     position: fixed;
     width: 100%;
     top: 0;
@@ -23,9 +23,9 @@ header {
 
 h1 {
     margin: 0;
+    padding-left: 10px; 
 }
 
-/* Adjust Menu Button Position */
 #menu-button {
     background: none;
     border: none;
