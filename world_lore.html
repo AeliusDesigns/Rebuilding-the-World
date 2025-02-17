@@ -1,20 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Lore</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Lore - Rebuilding the World</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lore.css"> <!-- Separate styling for wiki format -->
+    <script defer src="script.js"></script>
 </head>
-<body>
-  <header>
-    <h1>World Lore</h1>
-    <nav>
-      <a href="index.html">Back to Dashboard</a>
+<body class="lore-page">
+
+    <!-- Header -->
+    <header>
+        <h1>Rebuilding the World</h1>
+        <button id="menu-button">☰</button>
+    </header>
+
+    <!-- Dropdown Menu -->
+    <nav id="dropdown-menu" class="hidden">
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="map.html">World Map</a></li>
+            <li><a href="nation_manager.html">Nation Manager</a></li>
+        </ul>
     </nav>
-  </header>
-  <main>
-    <p>Here is where world lore information will be displayed.</p>
-  </main>
+
+    <!-- Main Content Area -->
+    <main id="lore-container">
+        <h2>World Lore</h2>
+        <p>Welcome to the World Lore wiki. Below you will find articles detailing the history, factions, and important events of the world.</p>
+
+        <!-- Button for Authorized Users to Add New Articles -->
+        <button id="add-article-btn">+ Add New Article</button>
+
+        <!-- Lore Articles Section -->
+        <section id="articles">
+            <!-- Example Article -->
+            <article class="lore-article">
+                <h3>The History of the Old Empire</h3>
+                <p>The Old Empire was the dominant power before the Great Collapse. It spanned across vast territories and was known for its technological advancements.</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <a href="https://discord.gg/YOUR_DISCORD_LINK" target="_blank" id="discord-button">
+            Join Our Discord
+        </a>
+    </footer>
+
+    <script defer src="lore.js"></script> <!-- Separate script for managing articles -->
 </body>
 </html>
