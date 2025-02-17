@@ -28,7 +28,8 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    color: white; 
+    color: white;
+    border-bottom: 3px solid #444;
 }
 
 header h1, 
@@ -153,6 +154,7 @@ footer {
     justify-content: flex-end;
     align-items: center;
     height: 50px; 
+    border-top: 3px solid #444;
 }
 
 /* Discord Button */
@@ -166,7 +168,7 @@ footer {
     font-size: 14px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
-    margin-right: 20px; 
+    margin-right: 40px; 
 }
 
 #discord-button:hover {
