@@ -1,5 +1,9 @@
 /* ==================== General Styles (For All Pages) ==================== */
 
+* {
+    font-family: Arial, sans-serif !important;
+}
+
 html, body {
     background-color: #121212;
     color: #ddd; 
