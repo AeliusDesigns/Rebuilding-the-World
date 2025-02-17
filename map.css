@@ -39,6 +39,36 @@ body.map-page #sidebar label {
     cursor: pointer;
 }
 
+/* ==================== Sidebar Button Styles ==================== */
+.map-toggle {
+    background: #222; /* Dark theme */
+    color: white;
+    padding: 10px 15px;
+    border: 2px solid #888;
+    border-radius: 8px; /* Rounded rectangle */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    width: 100%; /* Full width */
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.map-toggle:hover {
+    background: #444; /* Slightly lighter */
+    border-color: white;
+}
+
+/* Active (Selected) Button */
+.map-toggle.active {
+    background: #e0bf04; /* Gold theme color */
+    border-color: #c9a000;
+    color: black;
+}
+
 /* ==================== Map Display Area ==================== */
 body.map-page #map-container {
     margin-left: 270px; 
