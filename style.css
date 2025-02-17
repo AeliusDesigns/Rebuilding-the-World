@@ -111,26 +111,25 @@ a:hover {
 
 /* ==================== Landing Page Styles (Only for index.html) ==================== */
 
-/* Ensure the body layout is correct */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212; /* Dark background */
+    background-color: #121212; 
     color: #ddd;
 }
 
-/* Ensure Welcome & Updates Sections Are Lower */
+
 #welcome, #updates {
     max-width: 800px;
-    margin: 100px auto 40px auto; /* Moves it down */
+    margin: 100px auto 40px auto; 
     text-align: center;
     padding: 30px;
     border-bottom: 1px solid #333;
     background: #6e6d6d;
-    box-shadow: 2px 2px 5px rgba(0, 255, 255, 0.2);
+    box-shadow: 2px 2px 5px rgba(224, 191, 4, 0.8);
     border-radius: 10px;
-    color: white; /* Makes text inside white */
+    color: white; 
 }
 
 /* Add Interactive Hover Effects */
@@ -139,8 +138,8 @@ body {
 }
 
 #welcome:hover, #updates:hover {
-    transform: translateY(-5px); /* Slight floating effect */
-    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.6); /* Glowing aura */
+    transform: translateY(-5px); 
+    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8); 
 }
 
 /* ==================== Footer Styling ==================== */
