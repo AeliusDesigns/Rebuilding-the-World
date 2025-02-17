@@ -6,26 +6,27 @@ body {
     padding: 0;
 }
 
-/* ==================== Header Styling (Same Across All Pages) ==================== */
-
+/* ==================== Header Styling ==================== */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #333;
     color: white;
-    padding: 10px 20px; 
+    padding: 10px 20px; /* Ensures proper spacing */
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
 }
 
+/* Ensure the title is not touching the edge */
 h1 {
     margin: 0;
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
+/* Dropdown Button */
 #menu-button {
     background: none;
     border: none;
@@ -36,11 +37,11 @@ h1 {
     margin-right: 10px;
 }
 
-/* Ensure Navigation Menu Is Positioned Correctly */
-nav {
-    display: none;
+/* Dropdown Menu */
+#dropdown-menu {
+    display: none; /* Hidden by default */
     position: absolute;
-    top: 50px;
+    top: 50px; /* Just below the header */
     right: 10px;
     background: white;
     border: 1px solid #ccc;
@@ -48,24 +49,28 @@ nav {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-nav ul {
+/* Ensure Dropdown Menu Items are Properly Styled */
+#dropdown-menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-nav ul li {
+#dropdown-menu ul li {
     padding: 10px;
 }
 
-nav ul li a {
+#dropdown-menu ul li a {
     text-decoration: none;
     color: black;
+    display: block;
 }
 
-.hidden {
-    display: none;
+/* Class to Show Dropdown */
+.show {
+    display: block !important;
 }
+
 
 /* ==================== Landing Page Styles (Only for index.html) ==================== */
 
