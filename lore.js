@@ -3,20 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const addArticleBtn = document.getElementById("add-article-btn");
     const articlesContainer = document.getElementById("articles");
-
-    // Create the pop-up container
-    const popup = document.createElement("div");
-    popup.classList.add("article-popup");
-    popup.innerHTML = `
-        <span class="close-popup">&times;</span>
-        <h3 id="popup-title"></h3>
-        <p id="popup-content"></p>
-    `;
-    document.body.appendChild(popup);
-
-    const popupTitle = document.getElementById("popup-title");
-    const popupContent = document.getElementById("popup-content");
-    const closePopupBtn = document.querySelector(".close-popup");
+    const articleModal = document.getElementById("article-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalContent = document.getElementById("modal-content");
+    const closeModalBtn = document.querySelector(".close-modal");
 
     addArticleBtn.addEventListener("click", function () {
         const title = prompt("Enter the article title:");
@@ -36,14 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const articleTitle = document.createElement("h3");
         articleTitle.textContent = title;
 
-        // Read More Button
+        // Read More Button (Opens Modal)
         const readMoreButton = document.createElement("button");
         readMoreButton.textContent = "Read More";
         readMoreButton.classList.add("read-more");
         readMoreButton.addEventListener("click", function () {
-            popupTitle.textContent = title;
-            popupContent.textContent = content;
-            popup.style.display = "block";
+            modalTitle.textContent = title;
+            modalContent.textContent = content;
+            articleModal.style.display = "block";
         });
 
         // Delete Button
@@ -56,21 +46,22 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // Append elements
         article.appendChild(articleTitle);
         article.appendChild(readMoreButton);
         article.appendChild(deleteButton);
         articlesContainer.appendChild(article);
     }
 
-    // Close pop-up when clicking "X"
-    closePopupBtn.addEventListener("click", function () {
-        popup.style.display = "none";
+    // Close Modal when clicking "X"
+    closeModalBtn.addEventListener("click", function () {
+        articleModal.style.display = "none";
     });
 
-    // Close pop-up if clicking outside of it
+    // Close Modal if clicking outside of it
     window.addEventListener("click", function (event) {
-        if (event.target === popup) {
-            popup.style.display = "none";
+        if (event.target === articleModal) {
+            articleModal.style.display = "none";
         }
     });
 });
