@@ -4,6 +4,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #ddd; /* Light text */
 }
 
 /* ==================== Header Styling ==================== */
@@ -11,7 +13,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: #222; /* Darker header */
     color: white;
     padding: 10px 20px; /* Ensures proper spacing */
     position: fixed;
@@ -24,6 +26,17 @@ header {
 h1 {
     margin: 0;
     padding-left: 10px;
+}
+
+/* Links */
+a {
+    color: #00bcd4;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #fff;
 }
 
 /* Style the Dropdown Button */
@@ -97,16 +110,28 @@ body:not(.map-page) {
 }
 
 /* Center the Welcome and Updates Sections */
-body:not(.map-page) #welcome, 
-body:not(.map-page) #updates {
+body:not(.map-page):not(.lore-page) #welcome, 
+body:not(.map-page):not(.lore-page) #updates {
     max-width: 800px;
     margin: 40px auto;
     text-align: center;
     padding: 30px;
-    border-bottom: 1px solid #ddd;
-    background: #f9f9f9;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #444;
+    background: #1e1e1e;
+    box-shadow: 2px 2px 5px rgba(0, 255, 255, 0.2);
     border-radius: 10px;
+}
+
+/* Hover Effects on Dashboard Sections */
+body:not(.map-page):not(.lore-page) #welcome, 
+body:not(.map-page):not(.lore-page) #updates {
+    transition: all 0.3s ease-in-out;
+}
+
+body:not(.map-page):not(.lore-page) #welcome:hover, 
+body:not(.map-page):not(.lore-page) #updates:hover {
+    transform: translateY(-5px); /* Slight float */
+    box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.6); /* Light aura */
 }
 
 /* ==================== Map Page Styles (Only for map.html) ==================== */
