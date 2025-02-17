@@ -65,41 +65,47 @@ body.lore-page {
     background: #ff4444; /* Lighter red */
 }
 
-/* ==================== Modal Styling ==================== */
-#article-modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    max-width: 800px;
-    background: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.6); /* Gold glow */
-    z-index: 1001;
-    overflow-y: auto;
-    max-height: 80vh; /* Ensures scrollability */
-}
-
-/* Close Button */
-.close-modal {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    color: white;
-}
-
-.close-modal:hover {
-    color: #e0bf04; /* Gold color on hover */
-}
-
-/* Scrollable Content */
-.modal-content {
-    max-height: 70vh;
-    overflow-y: auto;
+/* Lore Articles Grid */
+#articles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 articles per row */
+    gap: 20px; /* Spacing between articles */
+    max-width: 1200px;
+    margin: 20px auto;
     padding: 10px;
+}
+
+/* Individual Article Styling */
+.lore-article {
+    background: #222;
+    padding: 15px;
+    border-left: 5px solid #e0bf04; /* Gold border for wiki-style look */
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Article Titles */
+.lore-article h3 {
+    margin: 0;
+    color: #e0bf04; /* Gold title color */
+}
+
+/* Hover Effect */
+.lore-article:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive Grid - Stack on Smaller Screens */
+@media (max-width: 900px) {
+    #articles {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    #articles {
+        grid-template-columns: repeat(1, 1fr); /* 1 per row on mobile */
+    }
 }
