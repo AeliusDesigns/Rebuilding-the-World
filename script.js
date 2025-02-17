@@ -16,9 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Menu button or dropdown menu not found!");
     }
 
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script Loaded!");
-
     // ===========================
     // Handle Map Layer Toggle (For map.html)
     // ===========================
