@@ -5,21 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+    <script defer src="script.js"></script> <!-- Ensure this loads -->
 </head>
 <body>
 
     <!-- Header Section -->
     <header>
         <h1>Rebuilding the World</h1>
-        <button id="menu-button">☰</button>
-        <nav id="dropdown-menu" class="hidden">
-            <ul>
-                <li><a href="map.html">World Map</a></li>
-                <li><a href="world_lore.html">World Lore</a></li>
-            </ul>
-        </nav>
+        <button id="menu-button">☰</button> <!-- This is the dropdown button -->
     </header>
+
+    <!-- Dropdown Menu (Initially Hidden) -->
+    <nav id="dropdown-menu" class="hidden">
+        <ul>
+            <li><a href="map.html">World Map</a></li>
+            <li><a href="world_lore.html">World Lore</a></li>
+        </ul>
+    </nav>
 
     <!-- Welcome Message -->
     <section id="welcome">
