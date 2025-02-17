@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World Map</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Map - Rebuilding the World</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="map.js"></script>
 </head>
 <body>
-  <header>
-    <h1>World Map</h1>
-    <nav>
-      <a href="index.html">Back to Dashboard</a>
-    </nav>
-  </header>
-  <main>
-    <p>Here is where the world map will be displayed.</p>
-  </main>
+
+    <!-- Header -->
+    <header>
+        <h1>Rebuilding the World</h1>
+        <nav>
+            <a href="index.html" class="home-button">🏠 Home</a>
+        </nav>
+    </header>
+
+    <!-- Sidebar for Layer Controls -->
+    <aside id="sidebar">
+        <h2>Map Layers</h2>
+        <label><input type="checkbox" id="abovegroundBorders" checked> Aboveground Borders</label>
+        <label><input type="checkbox" id="abovegroundNames" checked> Aboveground Names</label>
+        <label><input type="checkbox" id="belowgroundBorders"> Belowground Borders</label>
+        <label><input type="checkbox" id="belowgroundNames"> Belowground Names</label>
+    </aside>
+
+    <!-- Map Display Area -->
+    <main id="map-container">
+        <img id="abovegroundBordersImg" src="maps/aboveground_borders.jpg" alt="Aboveground Borders">
+        <img id="abovegroundNamesImg" src="maps/aboveground_names.jpg" alt="Aboveground Names">
+        <img id="belowgroundBordersImg" src="maps/belowground_borders.jpg" alt="Belowground Borders">
+        <img id="belowgroundNamesImg" src="maps/belowground_names.jpg" alt="Belowground Names">
+    </main>
+
 </body>
 </html>
