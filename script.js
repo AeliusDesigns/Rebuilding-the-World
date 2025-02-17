@@ -1,5 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Map images
+    // ===========================
+    // Handle Dropdown Menu (For index.html)
+    // ===========================
+    const menuButton = document.getElementById("menu-button");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+
+    if (menuButton && dropdownMenu) {
+        menuButton.addEventListener("click", function () {
+            dropdownMenu.classList.toggle("hidden");
+        });
+    }
+
+    // ===========================
+    // Handle Map Layer Toggle (For map.html)
+    // ===========================
     const images = {
         abovegroundBorders: document.getElementById("abovegroundBordersImg"),
         abovegroundNames: document.getElementById("abovegroundNamesImg"),
@@ -7,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         belowgroundNames: document.getElementById("belowgroundNamesImg"),
     };
 
-    // Checkboxes
     const checkboxes = {
         abovegroundBorders: document.getElementById("abovegroundBorders"),
         abovegroundNames: document.getElementById("abovegroundNames"),
@@ -15,18 +28,21 @@ document.addEventListener("DOMContentLoaded", function () {
         belowgroundNames: document.getElementById("belowgroundNames"),
     };
 
-    // Function to toggle visibility
-    function updateLayers() {
-        for (let key in images) {
-            images[key].style.display = checkboxes[key].checked ? "inline-block" : "none";
+    if (document.body.classList.contains("map-page")) {
+        function updateLayers() {
+            for (let key in images) {
+                if (images[key]) {
+                    images[key].style.display = checkboxes[key].checked ? "inline-block" : "none";
+                }
+            }
         }
-    }
 
-    // Attach event listeners
-    for (let key in checkboxes) {
-        checkboxes[key].addEventListener("change", updateLayers);
-    }
+        for (let key in checkboxes) {
+            if (checkboxes[key]) {
+                checkboxes[key].addEventListener("change", updateLayers);
+            }
+        }
 
-    // Initial update
-    updateLayers();
+        updateLayers(); // Initial check
+    }
 });
