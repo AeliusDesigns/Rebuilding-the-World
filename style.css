@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 /* Header Styling */
@@ -23,44 +24,50 @@ h1 {
     margin: 0;
 }
 
-.home-button {
+#menu-button {
+    background: none;
+    border: none;
     color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+nav {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    padding: 10px;
+}
+
+nav ul li a {
     text-decoration: none;
-    font-size: 18px;
+    color: black;
 }
 
-/* Sidebar Styling */
-#sidebar {
-    width: 250px;
-    background: #222;
-    color: white;
-    position: fixed;
-    left: 0;
-    top: 60px;
-    bottom: 0;
-    padding: 15px;
-    overflow-y: auto;
+.hidden {
+    display: none;
 }
 
-#sidebar h2 {
-    font-size: 20px;
+#welcome, #updates {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
 }
 
-#sidebar label {
-    display: block;
-    margin: 10px 0;
-}
-
-/* Map Container */
-#map-container {
-    margin-left: 270px;
-    padding-top: 70px; /* Avoid header overlap */
-    text-align: center;
-}
-
-/* Map Images */
-#map-container img {
-    max-width: 90%; /* Scale down for performance */
-    height: auto;
-    display: none; /* Initially hidden */
+/* PAGE-SPECIFIC STYLES */
+body.index-page {
+    background-color: #f4f4f4;
 }
