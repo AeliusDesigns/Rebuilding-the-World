@@ -48,3 +48,42 @@ body.lore-page {
     background: #444;
     border-color: white;
 }
+
+/* ==================== Modal Styling ==================== */
+#article-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 800px;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.6); /* Gold glow */
+    z-index: 1001;
+    overflow-y: auto;
+    max-height: 80vh; /* Ensures scrollability */
+}
+
+/* Close Button */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.close-modal:hover {
+    color: #e0bf04; /* Gold color on hover */
+}
+
+/* Scrollable Content */
+.modal-content {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+}
