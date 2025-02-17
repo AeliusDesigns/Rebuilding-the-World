@@ -33,10 +33,13 @@ body.lore-page {
 
 /* ==================== Article Controls Styling ==================== */
 #article-controls {
-    text-align: center;
+    display: flex; /* Align buttons in a row */
+    justify-content: center; /* Center them horizontally */
+    gap: 15px; /* Space between buttons */
     margin: 20px 0;
 }
 
+/* General Button Styling (Matches Create Article Button) */
 #article-controls button {
     padding: 10px 15px;
     font-size: 16px;
@@ -45,20 +48,26 @@ body.lore-page {
     border: 2px solid #888;
     border-radius: 8px;
     cursor: pointer;
-    margin: 0 10px;
     transition: all 0.3s ease-in-out;
 }
 
-#article-controls button:hover {
+/* Hover Effect for Create Article Button */
+#add-article-btn:hover {
     background: #444;
-    border-color: #e0bf04;
+    border-color: #e0bf04; /* Gold hover */
 }
 
-/* Delete Mode - Highlight Articles to Delete */
-.lore-article.delete-mode {
-    outline: 3px solid #b22222;
-    background: #3a1a1a;
-    cursor: pointer;
+/* Delete Articles Button (Red Theme) */
+#delete-article-btn {
+    background: #b22222; /* Dark red */
+    border-color: #880000;
+}
+
+/* Hover Effect for Delete Button */
+#delete-article-btn:hover {
+    background: #ff4444; /* Lighter red */
+    border-color: #ff6666;
+    box-shadow: 0px 0px 10px rgba(255, 68, 68, 0.6); /* Red glow */
 }
 
 /* ==================== Lore Articles Grid ==================== */
