@@ -1,11 +1,11 @@
 /* ==================== General Styles (For All Pages) ==================== */
 
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    background-color: #121212 
+    color: #ddd 
+    height: 100%; 
     margin: 0;
     padding: 0;
-    background-color: #121212; /* Dark background */
-    color: #ddd; /* Light text */
 }
 
 /* ==================== Header Styling ==================== */
