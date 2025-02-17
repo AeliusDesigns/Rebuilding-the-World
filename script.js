@@ -16,12 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Menu button or dropdown menu not found!");
     }
 
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script Loaded!");
+
     // ===========================
     // Handle Map Layer Toggle (For map.html)
     // ===========================
     if (document.body.classList.contains("map-page")) {
         console.log("Map Page Detected!");
 
+        const buttons = document.querySelectorAll(".map-toggle");
         const images = {
             abovegroundBorders: document.getElementById("abovegroundBordersImg"),
             abovegroundNames: document.getElementById("abovegroundNamesImg"),
@@ -29,27 +33,34 @@ document.addEventListener("DOMContentLoaded", function () {
             belowgroundNames: document.getElementById("belowgroundNamesImg"),
         };
 
-        const checkboxes = {
-            abovegroundBorders: document.getElementById("abovegroundBorders"),
-            abovegroundNames: document.getElementById("abovegroundNames"),
-            belowgroundBorders: document.getElementById("belowgroundBorders"),
-            belowgroundNames: document.getElementById("belowgroundNames"),
-        };
+        function selectLayer(selectedLayer) {
+            // Remove "active" class from all buttons
+            buttons.forEach(btn => btn.classList.remove("active"));
 
-        function updateLayers() {
+            // Hide all images
             for (let key in images) {
-                if (images[key] && checkboxes[key]) {
-                    images[key].classList.toggle("active", checkboxes[key].checked);
+                if (images[key]) {
+                    images[key].style.display = "none";
                 }
             }
-        }
 
-        for (let key in checkboxes) {
-            if (checkboxes[key]) {
-                checkboxes[key].addEventListener("change", updateLayers);
+            // Activate the clicked button & show corresponding map layer
+            const selectedButton = document.querySelector(`.map-toggle[data-layer="${selectedLayer}"]`);
+            if (selectedButton) {
+                selectedButton.classList.add("active");
+            }
+
+            if (images[selectedLayer]) {
+                images[selectedLayer].style.display = "inline-block";
             }
         }
 
-        updateLayers(); // Initial check
+        // Add event listeners to buttons
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const layer = this.getAttribute("data-layer");
+                selectLayer(layer);
+            });
+        });
     }
 });
