@@ -26,27 +26,37 @@ h1 {
     padding-left: 10px;
 }
 
-/* Dropdown Button */
+/* Style the Dropdown Button */
 #menu-button {
-    background: none;
-    border: none;
+    background: #222; /* Dark theme */
+    border: 2px solid #888; /* Light gray border */
     color: white;
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
     margin-right: 10px;
+    border-radius: 8px; /* Rounded square */
+    transition: all 0.3s ease-in-out;
 }
 
-/* Dropdown Menu */
+/* Hover Effect */
+#menu-button:hover {
+    background: #444; /* Slightly lighter */
+    border-color: white;
+    transform: scale(1.1);
+}
+
+/* Fix Dropdown Menu Position */
 #dropdown-menu {
-    display: none; /* Hidden by default */
+    display: none;
     position: absolute;
-    top: 50px; /* Just below the header */
+    top: 60px; /* Moved down slightly to avoid header overlap */
     right: 10px;
-    background: white;
-    border: 1px solid #ccc;
+    background: #222; /* Dark theme background */
+    border: 1px solid #444; /* Slight border for visibility */
     padding: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 8px; /* Slight rounding */
 }
 
 /* Ensure Dropdown Menu Items are Properly Styled */
@@ -62,13 +72,15 @@ h1 {
 
 #dropdown-menu ul li a {
     text-decoration: none;
-    color: black;
+    color: white;
     display: block;
 }
 
-/* Class to Show Dropdown */
+/* Show Dropdown */
 .show {
     display: block !important;
+}
+
 }
 
 
