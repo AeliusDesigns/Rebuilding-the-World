@@ -1,11 +1,11 @@
 /* ==================== General Page Styling for Map Page ==================== */
-@import url('style.css'); /* Ensures header & footer styles still apply */
+@import url('style.css'); 
 
 body.map-page {
     display: flex;
     flex-direction: column;
-    padding-top: 60px; /* Prevents header overlap */
-    background-color: #121212 !important; /* Ensures dark background */
+    padding-top: 60px; 
+    background-color: #121212 !important;
     color: #ddd !important;
     height: 100vh;
     margin: 0;
@@ -19,11 +19,11 @@ body.map-page #sidebar {
     color: white;
     position: fixed;
     left: 0;
-    top: 60px; /* Prevents overlap with the header */
+    top: 60px; 
     bottom: 0;
     padding: 15px;
     overflow-y: auto;
-    border-right: 2px solid #444; /* Adds a border for better separation */
+    border-right: 2px solid #444; 
 }
 
 /* Sidebar Heading */
@@ -41,18 +41,18 @@ body.map-page #sidebar label {
 
 /* ==================== Map Display Area ==================== */
 body.map-page #map-container {
-    margin-left: 270px; /* Ensures space for the sidebar */
+    margin-left: 270px; 
     padding: 20px;
     text-align: center;
     flex-grow: 1;
 }
 
-/* Map Images (Initially Hidden Until a Layer is Selected) */
+/* Map Images*/
 body.map-page #map-container img {
     max-width: 90%; /* Ensures images are optimized */
     height: auto;
-    display: none; /* Initially hidden */
-    border: 2px solid #444; /* Optional: Adds a slight border for contrast */
+    display: none; 
+    border: 2px solid #444; 
 }
 
 /* Show Images When Selected */
