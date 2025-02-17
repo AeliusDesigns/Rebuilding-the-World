@@ -1,12 +1,12 @@
-/* General Page Styling */
+/* ==================== General Styles (For All Pages) ==================== */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
 
-/* Header Styling */
+/* Header Styling (Same Across All Pages) */
 header {
     display: flex;
     justify-content: space-between;
@@ -24,7 +24,15 @@ h1 {
     margin: 0;
 }
 
-#menu-button {
+.home-button {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* ==================== Landing Page Styles (Only for index.html) ==================== */
+
+body:not(.map-page) #menu-button {
     background: none;
     border: none;
     color: white;
@@ -32,7 +40,7 @@ h1 {
     cursor: pointer;
 }
 
-nav {
+body:not(.map-page) nav {
     display: none;
     position: absolute;
     top: 50px;
@@ -43,31 +51,71 @@ nav {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-nav ul {
+body:not(.map-page) nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-nav ul li {
+body:not(.map-page) nav ul li {
     padding: 10px;
 }
 
-nav ul li a {
+body:not(.map-page) nav ul li a {
     text-decoration: none;
     color: black;
 }
 
-.hidden {
+body:not(.map-page) .hidden {
     display: none;
 }
 
-#welcome, #updates {
+body:not(.map-page) #welcome, 
+body:not(.map-page) #updates {
     padding: 20px;
     border-bottom: 1px solid #ddd;
 }
 
-/* PAGE-SPECIFIC STYLES */
-body.index-page {
-    background-color: #f4f4f4;
+/* ==================== Map Page Styles (Only for map.html) ==================== */
+
+body.map-page {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px; /* Prevents header overlap */
+}
+
+/* Sidebar (Only on Map Page) */
+body.map-page #sidebar {
+    width: 250px;
+    background: #222;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+body.map-page #sidebar h2 {
+    font-size: 20px;
+}
+
+body.map-page #sidebar label {
+    display: block;
+    margin: 10px 0;
+}
+
+/* Map Display Area */
+body.map-page #map-container {
+    margin-left: 270px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Map Images (Hidden by Default) */
+body.map-page #map-container img {
+    max-width: 90%; /* Ensures images are optimized */
+    height: auto;
+    display: none; /* Initially hidden */
 }
