@@ -23,7 +23,7 @@ body.map-page #sidebar {
     bottom: 0;
     padding: 15px;
     overflow-y: auto;
-    border-right: 2px solid #444; 
+    border-right: 3px solid #444; 
 }
 
 /* Sidebar Heading */
@@ -37,6 +37,23 @@ body.map-page #sidebar label {
     display: block;
     margin: 10px 0;
     cursor: pointer;
+}
+
+/* Merge Header and Sidebar Borders */
+body.map-page header {
+    border-bottom: none; /* Removes bottom border from header */
+    border-right: 3px solid #444; /* Connects with sidebar */
+}
+
+/* Sidebar Border */
+body.map-page #sidebar {
+    border-right: 3px solid #444; /* Same color as header & footer */
+}
+
+/* Footer Border on Map Page */
+body.map-page footer {
+    border-top: none; /* Removes top border from footer */
+    border-right: 3px solid #444; /* Connects with sidebar */
 }
 
 /* ==================== Sidebar Button Styles ==================== */
