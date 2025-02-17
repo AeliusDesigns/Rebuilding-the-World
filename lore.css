@@ -130,6 +130,7 @@ body.lore-page {
 }
 
 /* ==================== Modal Styling (Larger Article View) ==================== */
+/* ==================== Modal Styling (Larger Article View) ==================== */
 #article-modal {
     display: none; /* Hidden by default */
     position: fixed;
@@ -150,16 +151,23 @@ body.lore-page {
 /* Modal Content */
 .modal-content {
     padding: 20px;
+    position: relative; /* Ensures child elements (like the close button) are positioned inside */
 }
 
-/* Close Button (Fixed in the Top-Right Corner of Modal) */
+/* Close Button (Hidden by Default) */
 .close-modal {
+    display: none; /* Hidden by default */
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 24px;
     cursor: pointer;
     color: white;
+}
+
+/* When Modal is Opened, Show the Close Button */
+#article-modal.open .close-modal {
+    display: block;
 }
 
 .close-modal:hover {
