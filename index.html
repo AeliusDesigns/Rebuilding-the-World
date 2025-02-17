@@ -13,8 +13,8 @@
 <header class="header">
     <h1>Rebuilding the World</h1>
     <div class="dropdown">
-        <button class="dropbtn">☰ Menu</button>
-        <div class="dropdown-content">
+        <button id="menu-button">☰ Menu</button>
+        <div class="dropdown-content" id="menu-dropdown">
             <a href="map.html">World Map</a>
             <a href="world_lore.html">World Lore</a>
         </div>
@@ -26,14 +26,12 @@
     <h2>Game Management Dashboard</h2>
     <p>Welcome! Manage your nation and explore the world.</p>
 
-    <!-- Navigation Buttons -->
     <div class="button-container">
         <button onclick="navigateTo('recruitment.html')">Recruit Troops</button>
         <button onclick="navigateTo('construction.html')">Construct Buildings</button>
         <button onclick="navigateTo('nation_stats.html')">View Nation Stats</button>
     </div>
 
-    <!-- Game Updates -->
     <div class="updates">
         <h2>Game Updates</h2>
         <p>Latest Patch: Version 1.1 - Stability & Economy Rework</p>
