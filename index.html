@@ -3,31 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rebuilding the World</title>
+  <title>Rebuilding the World - Dashboard</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- HEADER SECTION -->
-  <header class="header">
-    <h1>Rebuilding the World</h1>
+<!-- HEADER SECTION -->
+<header class="header">
+  <h1 class="title">Rebuilding the World</h1>
 
-    <!-- DROPDOWN MENU -->
-    <div class="dropdown">
-      <button class="dropbtn">☰ Menu</button>
-      <div class="dropdown-content">
-        <a href="map.html">World Map</a>
-        <a href="world_lore.html">World Lore</a>
-      </div>
+  <!-- Dropdown Navigation -->
+  <div class="dropdown">
+    <button class="dropdown-btn">☰ Menu</button>
+    <div class="dropdown-content">
+      <a href="world_map.html">World Map</a>
+      <a href="world_lore.html">World Lore</a>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- MAIN CONTENT AREA -->
-  <main class="content">
-    <h2>Welcome to the Game</h2>
-    <p>This is the main dashboard for managing your world.</p>
-  </main>
+<!-- MAIN CONTENT AREA -->
+<div class="container">
+  <h2>Game Management Dashboard</h2>
+  <p>Welcome to the strategy game! Use the options below to manage your nation.</p>
 
-  <script src="script.js"></script>
+  <!-- Navigation Buttons -->
+  <div class="button-container">
+    <button onclick="navigateTo('recruitment.html')">Recruit Troops</button>
+    <button onclick="navigateTo('construction.html')">Construct Buildings</button>
+    <button onclick="navigateTo('nation_stats.html')">View Nation Stats</button>
+  </div>
+
+  <!-- Game Updates & Links Section -->
+  <div class="updates">
+    <h2>Game Updates</h2>
+    <p>Latest Patch: Version 1.1 - Stability & Economy Rework</p>
+    <p><a href="#">Click here</a> for the full patch notes.</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
