@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addArticleBtn = document.getElementById("add-article-btn");
     const articlesContainer = document.getElementById("articles");
     const articleModal = document.getElementById("article-modal");
+    const modalOverlay = document.getElementById("modal-overlay");
     const modalTitle = document.getElementById("modal-title");
     const modalContent = document.getElementById("modal-content");
     const closeModalBtn = document.querySelector(".close-modal");
@@ -32,9 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
         readMoreButton.classList.add("read-more");
         readMoreButton.addEventListener("click", function () {
             modalTitle.textContent = title;
-            modalContent.textContent = content;
-            articleModal.classList.add("open"); // Add "open" class to show close button
+            modalContent.innerHTML = content.replace(/\n/g, "<br>"); // Preserve line breaks
+            articleModal.classList.add("open");
             articleModal.style.display = "block";
+            modalOverlay.style.display = "block"; // Show dark overlay
         });
 
         // Delete Button
@@ -56,15 +58,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Close Modal when clicking "X"
     closeModalBtn.addEventListener("click", function () {
-        articleModal.classList.remove("open"); // Remove "open" class to hide close button
+        articleModal.classList.remove("open");
         articleModal.style.display = "none";
+        modalOverlay.style.display = "none"; // Hide overlay
     });
 
     // Close Modal if clicking outside of it
-    window.addEventListener("click", function (event) {
-        if (event.target === articleModal) {
-            articleModal.classList.remove("open");
-            articleModal.style.display = "none";
-        }
+    modalOverlay.addEventListener("click", function () {
+        articleModal.classList.remove("open");
+        articleModal.style.display = "none";
+        modalOverlay.style.display = "none"; // Hide overlay
     });
 });
