@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         readMoreButton.addEventListener("click", function () {
             modalTitle.textContent = title;
             modalContent.textContent = content;
+            articleModal.classList.add("open"); // Add "open" class to show close button
             articleModal.style.display = "block";
         });
 
@@ -55,12 +56,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Close Modal when clicking "X"
     closeModalBtn.addEventListener("click", function () {
+        articleModal.classList.remove("open"); // Remove "open" class to hide close button
         articleModal.style.display = "none";
     });
 
     // Close Modal if clicking outside of it
     window.addEventListener("click", function (event) {
         if (event.target === articleModal) {
+            articleModal.classList.remove("open");
             articleModal.style.display = "none";
         }
     });
