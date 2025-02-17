@@ -3,41 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rebuilding the World - Dashboard</title>
+    <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header">
-    <h1>Rebuilding the World</h1>
-    <div class="dropdown">
-        <button id="menu-button">☰ Menu</button>
-        <div class="dropdown-content" id="menu-dropdown">
-            <a href="map.html">World Map</a>
-            <a href="world_lore.html">World Lore</a>
-        </div>
-    </div>
-</header>
+    <!-- Header Section -->
+    <header>
+        <h1>Rebuilding the World</h1>
+        <button id="menu-button">☰</button>
+        <nav id="dropdown-menu" class="hidden">
+            <ul>
+                <li><a href="map.html">World Map</a></li>
+                <li><a href="world_lore.html">World Lore</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- MAIN CONTENT -->
-<div class="container">
-    <h2>Game Management Dashboard</h2>
-    <p>Welcome! Manage your nation and explore the world.</p>
+    <!-- Welcome Message -->
+    <section id="welcome">
+        <h2>Welcome to Rebuilding the World</h2>
+        <p>This is where you can describe your game and what it's about.</p>
+    </section>
 
-    <div class="button-container">
-        <button onclick="navigateTo('recruitment.html')">Recruit Troops</button>
-        <button onclick="navigateTo('construction.html')">Construct Buildings</button>
-        <button onclick="navigateTo('nation_stats.html')">View Nation Stats</button>
-    </div>
-
-    <div class="updates">
-        <h2>Game Updates</h2>
-        <p>Latest Patch: Version 1.1 - Stability & Economy Rework</p>
-        <p><a href="#">Click here</a> for full patch notes.</p>
-    </div>
-</div>
+    <!-- Updates Section -->
+    <section id="updates">
+        <h2>Recent Updates</h2>
+        <p>Here you can list recent changes, additions, and news about the game.</p>
+    </section>
 
 </body>
 </html>
