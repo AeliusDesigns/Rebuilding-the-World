@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script Loaded!"); // Debugging
+
     // ===========================
     // Handle Dropdown Menu (For index.html)
     // ===========================
@@ -6,9 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const dropdownMenu = document.getElementById("dropdown-menu");
 
     if (menuButton && dropdownMenu) {
+        console.log("Menu button found!"); // Debugging
         menuButton.addEventListener("click", function () {
-            dropdownMenu.classList.toggle("hidden");
+            console.log("Menu button clicked!"); // Debugging
+            dropdownMenu.classList.toggle("show");
         });
+    } else {
+        console.error("Menu button or dropdown menu not found!");
     }
 
     // ===========================
