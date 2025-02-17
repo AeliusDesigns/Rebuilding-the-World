@@ -9,12 +9,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalContent = document.getElementById("modal-content");
     const closeModalBtn = document.querySelector(".close-modal");
 
+    // Load stored articles on page load
+    loadArticles();
+
     addArticleBtn.addEventListener("click", function () {
         const title = prompt("Enter the article title:");
         const content = prompt("Enter the article content:");
 
         if (title && content) {
             createArticle(title, content);
+            saveArticle(title, content); // Save to localStorage
         } else {
             alert("Article creation cancelled.");
         }
@@ -33,10 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
         readMoreButton.classList.add("read-more");
         readMoreButton.addEventListener("click", function () {
             modalTitle.textContent = title;
-            modalContent.innerHTML = content.replace(/\n/g, "<br>"); // Preserve line breaks
+            modalContent.innerHTML = content.replace(/\n/g, "<br>"); // Preserve formatting
             articleModal.classList.add("open");
             articleModal.style.display = "block";
-            modalOverlay.style.display = "block"; // Show dark overlay
+            modalOverlay.style.display = "block"; // Show overlay
         });
 
         // Delete Button
@@ -46,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteButton.addEventListener("click", function () {
             if (confirm(`Are you sure you want to delete "${title}"?`)) {
                 article.remove();
+                deleteArticle(title); // Remove from localStorage
             }
         });
 
@@ -54,6 +59,28 @@ document.addEventListener("DOMContentLoaded", function () {
         article.appendChild(readMoreButton);
         article.appendChild(deleteButton);
         articlesContainer.appendChild(article);
+    }
+
+    // Save article to localStorage
+    function saveArticle(title, content) {
+        let articles = JSON.parse(localStorage.getItem("articles")) || [];
+        articles.push({ title, content });
+        localStorage.setItem("articles", JSON.stringify(articles));
+    }
+
+    // Load articles from localStorage
+    function loadArticles() {
+        let articles = JSON.parse(localStorage.getItem("articles")) || [];
+        articles.forEach(article => {
+            createArticle(article.title, article.content);
+        });
+    }
+
+    // Delete article from localStorage
+    function deleteArticle(title) {
+        let articles = JSON.parse(localStorage.getItem("articles")) || [];
+        articles = articles.filter(article => article.title !== title);
+        localStorage.setItem("articles", JSON.stringify(articles));
     }
 
     // Close Modal when clicking "X"
