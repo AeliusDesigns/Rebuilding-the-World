@@ -49,7 +49,7 @@ a:hover {
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
     margin-left: auto; /* Pushes it to the right naturally */
-    margin-right: 25px; /* Prevents it from being too far */
+    margin-right: 40px; /* Prevents it from being too far */
 }
 
 /* Hover Effect */
