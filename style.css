@@ -1,107 +1,37 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebuilding the World</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
 
-/* Header */
-.header {
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-}
+    <!-- Header Section -->
+    <header>
+        <h1>Rebuilding the World</h1>
+        <button id="menu-button">☰</button>
+        <nav id="dropdown-menu" class="hidden">
+            <ul>
+                <li><a href="map.html">World Map</a></li>
+                <li><a href="world_lore.html">World Lore</a></li>
+            </ul>
+        </nav>
+    </header>
 
-/* Dropdown */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
+    <!-- Welcome Message -->
+    <section id="welcome">
+        <h2>Welcome to Rebuilding the World</h2>
+        <p>This is where you can describe your game and what it's about.</p>
+    </section>
 
-#menu-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-}
+    <!-- Updates Section -->
+    <section id="updates">
+        <h2>Recent Updates</h2>
+        <p>Here you can list recent changes, additions, and news about the game.</p>
+    </section>
 
-/* Dropdown Content */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    background-color: white;
-    min-width: 150px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    border-radius: 5px;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 10px 15px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Container */
-.container {
-    width: 80%;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px #aaa;
-    text-align: center;
-}
-
-/* Buttons */
-.button-container {
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Updates Section */
-.updates {
-    background-color: #eee;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-
-.updates h2 {
-    margin-top: 0;
-}
+</body>
+</html>
