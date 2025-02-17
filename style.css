@@ -1,4 +1,4 @@
-/* Global Styles */
+/* Reset */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -15,10 +15,14 @@ body {
   align-items: center;
   padding: 15px 20px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
 }
 
-/* HEADER TITLE */
-.header h1 {
+.title {
   margin: 0;
   font-size: 24px;
 }
@@ -26,10 +30,9 @@ body {
 /* DROPDOWN MENU */
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
-.dropbtn {
+.dropdown-btn {
   background-color: #007bff;
   color: white;
   padding: 10px 15px;
@@ -44,9 +47,11 @@ body {
   position: absolute;
   right: 0;
   background-color: white;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
   border-radius: 5px;
+  overflow: hidden;
 }
 
 .dropdown-content a {
@@ -55,6 +60,7 @@ body {
   text-decoration: none;
   display: block;
   font-size: 14px;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .dropdown-content a:hover {
@@ -65,8 +71,47 @@ body {
   display: block;
 }
 
-/* MAIN CONTENT */
-.content {
+/* MAIN CONTAINER */
+.container {
+  width: 80%;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  margin-top: 80px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #aaa;
   text-align: center;
-  padding: 50px;
+}
+
+/* BUTTONS */
+.button-container {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* GAME UPDATES */
+.updates {
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.updates h2 {
+  margin-top: 0;
 }
