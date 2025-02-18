@@ -9,8 +9,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const SUPABASE_URL = "https://utanijplulkywjzjvmty.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk";
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_KEY = process.env.SUPABASE_KEY;
+const JWT_SECRET = process.env.JWT_SECRET;
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 app.post("/register", async (req, res) => {
@@ -53,7 +54,7 @@ app.post("/login", async (req, res) => {
       return res.status(401).send("Invalid credentials");
     }
     
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: "1h" });
     res.json({ token, role: user.role });
   } catch (error) {
     res.status(500).send("Server error");
@@ -63,7 +64,7 @@ app.post("/login", async (req, res) => {
 const authenticate = (req, res, next) => {
   const token = req.headers["authorization"]?.split(" ")[1];
   if (!token) return res.status(403).send("Access denied");
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
     if (err) return res.status(403).send("Invalid token");
     req.user = decoded;
     next();
