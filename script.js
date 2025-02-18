@@ -42,33 +42,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     // ===========================
     // Handle Dropdown Menu
     // ===========================
-    document.addEventListener("DOMContentLoaded", function () {
-        console.log("📜 script.js Loaded!");
+    console.log("📜 Initializing dropdown menu...");
 
-        const menuButton = document.getElementById("menu-button");
-        const dropdownMenu = document.getElementById("dropdown-menu");
+    const menuButton = document.getElementById("menu-button");
+    const dropdownMenu = document.getElementById("dropdown-menu");
 
-        if (menuButton && dropdownMenu) {
-            console.log("✅ Menu button found!");
+    if (menuButton && dropdownMenu) {
+        console.log("✅ Menu button found!");
 
-            menuButton.addEventListener("click", function (event) {
-                event.stopPropagation(); // Prevents click from closing immediately
-                dropdownMenu.classList.toggle("show");
+        menuButton.addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevents click from closing immediately
+            dropdownMenu.classList.toggle("show");
 
-                console.log("🔽 Dropdown menu toggled:", dropdownMenu.classList.contains("show"));
-            });
+            console.log("🔽 Dropdown menu toggled:", dropdownMenu.classList.contains("show"));
+        });
 
-            // Close the menu when clicking outside of it
-            document.addEventListener("click", function (event) {
-                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove("show");
-                    console.log("❌ Dropdown menu closed");
-                }
-            });
-        } else {
-            console.error("❌ Menu button or dropdown menu not found!");
-        }
-    });
+        // Close the menu when clicking outside of it
+        document.addEventListener("click", function (event) {
+            if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove("show");
+                console.log("❌ Dropdown menu closed");
+            }
+        });
+    } else {
+        console.error("❌ Menu button or dropdown menu not found!");
+    }
 
     // ===========================
     // Handle Map Layer Toggle
