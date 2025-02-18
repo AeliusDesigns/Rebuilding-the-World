@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     let user = null; // Store authenticated user
     let deleteMode = false;
 
-    // Fix: Get Supabase User Session & Token
+    // ===========================
+    // Check Authentication (Fix)
+    // ===========================
     async function checkAuth() {
         const { data: session, error } = await supabase.auth.getSession();
         if (error || !session || !session.session) {
@@ -24,17 +26,17 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        const authToken = session.session.access_token; // ✅ Get token correctly
-        user = session.session.user; // ✅ Get user
+        const authToken = session.session.access_token;
+        user = session.session.user;
 
-        localStorage.setItem("session", JSON.stringify({ user, token: authToken })); // Store session
+        localStorage.setItem("session", JSON.stringify({ user, token: authToken }));
 
         // Send token to backend to verify role
         const response = await fetch("http://localhost:5000/user-info", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${authToken}` // ✅ Send token correctly
+                "Authorization": `Bearer ${authToken}`
             },
             body: JSON.stringify({ user_id: user.id }),
         });
@@ -47,39 +49,91 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    // Run authentication check on page load
-    await checkAuth();
-});
-
-    // Load Articles from Supabase
+    // ===========================
+    // Load Articles from Supabase 
+    // ===========================
     async function loadArticles() {
-        const response = await fetch("http://localhost:5000/articles");
-        const data = await response.json();
-        articlesContainer.innerHTML = "";
-        data.forEach(article => createArticle(article.id, article.title, article.content));
+        try {
+            const response = await fetch("http://localhost:5000/articles");
+            const data = await response.json();
+            articlesContainer.innerHTML = "";
+
+            data.forEach(article => createArticle(article.id, article.title, article.content));
+        } catch (error) {
+            console.error("Error loading articles:", error);
+        }
     }
 
-    // Create an Article (Send Token to Backend)
+    // ===========================
+    //  Create an Article
+    // ===========================
     addArticleBtn.addEventListener("click", async function () {
         const session = JSON.parse(localStorage.getItem("session"));
-        if (!session || session.user.role !== "admin") return alert("Unauthorized");
+        if (!session || session.user.role !== "admin") {
+            alert("Unauthorized");
+            return;
+        }
 
         const title = prompt("Enter the article title:");
         const content = prompt("Enter the article content:");
 
         if (title && content) {
-            await fetch("http://localhost:5000/articles", {
-                method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${session.token}` // Send token
-                },
-                body: JSON.stringify({ title, content, user_id: session.user.id }),
-            });
-            loadArticles();
+            try {
+                await fetch("http://localhost:5000/articles", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${session.token}`
+                    },
+                    body: JSON.stringify({ title, content, user_id: session.user.id }),
+                });
+
+                loadArticles();
+            } catch (error) {
+                console.error("Error creating article:", error);
+            }
         }
     });
 
+    // ===========================
+    //  Delete Mode Toggle
+    // ===========================
+    deleteArticleBtn.addEventListener("click", function () {
+        deleteMode = !deleteMode;
+        document.querySelectorAll(".lore-article").forEach(article => {
+            article.classList.toggle("delete-mode", deleteMode);
+            article.onclick = deleteMode ? () => deleteArticle(article.dataset.id) : null;
+        });
+    });
+
+    // ===========================
+    // Delete an Article 
+    // ===========================
+    async function deleteArticle(id) {
+        const session = JSON.parse(localStorage.getItem("session"));
+        if (!session || session.user.role !== "admin") {
+            alert("Unauthorized");
+            return;
+        }
+
+        if (!confirm("Are you sure you want to delete this article?")) return;
+
+        try {
+            await fetch(`http://localhost:5000/articles/${id}`, {
+                method: "DELETE",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${session.token}`
+                }
+            });
+
+            loadArticles();
+        } catch (error) {
+            console.error("Error deleting article:", error);
+        }
+    }
+
+    //  Ensure authentication and articles load on page load
     await checkAuth();
     await loadArticles();
-});
+}); 
