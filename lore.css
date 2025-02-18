@@ -213,7 +213,7 @@ body.lore-page {
 #dropdown-menu {
     display: none;
     position: absolute;
-    top: 100px;
+    top: 80px;
     right: 10px;
     background: #222;
     border: 1px solid #444;
