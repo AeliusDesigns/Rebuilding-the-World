@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    console.log("Lore Script Loaded!");
+    console.log("📜 Lore Script Loaded!");
 
     // Ensure Supabase is available
-    if (!supabase) {
-        console.error("❌ Supabase is not defined in lore.js.");
+    if (!window.supabaseClient) {
+        console.error("❌ Supabase is not initialized in lore.js. Check supabase.js!");
         return;
     }
 
     console.log("✅ Supabase is available in lore.js.");
 
+    // UI Elements
     const addArticleBtn = document.getElementById("add-article-btn");
     const deleteArticleBtn = document.getElementById("delete-article-btn");
     const articlesContainer = document.getElementById("articles");
@@ -20,15 +21,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Check Authentication (Fix)
     // ===========================
     async function checkAuth() {
-        const { data: session, error } = await supabase.auth.getSession();
-        if (error || !session || !session.session) {
-            console.error("User not authenticated.");
+        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
+        
+        if (error || !user) {
+            console.warn("User not authenticated.");
             return;
         }
 
-        const authToken = session.session.access_token;
-        user = session.session.user;
+        // Store user in variable
+        console.log("Authenticated user:", user);
+        const authToken = user?.access_token;
 
+        // Store session locally
         localStorage.setItem("session", JSON.stringify({ user, token: authToken }));
 
         // Send token to backend to verify role
@@ -65,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // ===========================
-    //  Create an Article
+    // Create an Article
     // ===========================
     addArticleBtn.addEventListener("click", async function () {
         const session = JSON.parse(localStorage.getItem("session"));
@@ -96,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     // ===========================
-    //  Delete Mode Toggle
+    // Delete Mode Toggle
     // ===========================
     deleteArticleBtn.addEventListener("click", function () {
         deleteMode = !deleteMode;
@@ -133,11 +137,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    //  Ensure authentication and articles load on page load
+    // Ensure authentication and articles load on page load
     async function initLorePage() {
-    await checkAuth();
-    await loadArticles();
-}
+        await checkAuth();
+        await loadArticles();
+    }
 
-initLorePage();
-}); 
+    initLorePage();
+});
