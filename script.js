@@ -45,37 +45,43 @@ document.addEventListener("DOMContentLoaded", async function () {
     // ===========================
     // Handle Dropdown Menu
     // ===========================
-    console.log("📜 Initializing dropdown menu...");
+    document.addEventListener("DOMContentLoaded", function () {
+    console.log("📜 script.js Loaded!");
 
+    // Get menu button & dropdown menu
     const menuButton = document.getElementById("menu-button");
     const dropdownMenu = document.getElementById("dropdown-menu");
 
+    // Check if they exist before attaching event listener
     if (menuButton && dropdownMenu) {
-        console.log("✅ Menu button and dropdown menu found!");
+        console.log("✅ Menu button & dropdown menu found!");
 
         menuButton.addEventListener("click", function (event) {
             event.stopPropagation();
+            console.log("✅ Menu button clicked!");
 
             dropdownMenu.classList.toggle("show");
             menuButton.classList.toggle("active");
-            
-            console.log("🔽 Dropdown menu toggled:", dropdownMenu.classList.contains("show"));
 
+            // Set aria-expanded for accessibility
             const isExpanded = dropdownMenu.classList.contains("show");
             menuButton.setAttribute("aria-expanded", isExpanded);
         });
 
+        // Close menu when clicking outside
         document.addEventListener("click", function (event) {
             if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                 dropdownMenu.classList.remove("show");
-                console.log("❌ Dropdown menu closed");
                 menuButton.classList.remove("active");
                 menuButton.setAttribute("aria-expanded", "false");
+                console.log("❌ Dropdown menu closed");
             }
         });
+
     } else {
-        console.error("❌ Menu button or dropdown menu not found!");
+        console.error("❌ Menu button or dropdown menu NOT found!");
     }
+});
 
     // ===========================
     // Handle Map Layer Toggle
