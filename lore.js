@@ -53,95 +53,91 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    // ===========================
-    // Load Articles from Supabase 
-    // ===========================
-    async function loadArticles() {
-        try {
-            const response = await fetch("http://localhost:5000/articles");
-            const data = await response.json();
-            articlesContainer.innerHTML = "";
+// ===========================
+// Load Articles from Supabase
+// ===========================
+async function loadArticles() {
+    try {
+        const { data, error } = await window.supabaseClient
+            .from("lore_articles")
+            .select("*");
 
-            data.forEach(article => createArticle(article.id, article.title, article.content));
-        } catch (error) {
-            console.error("Error loading articles:", error);
-        }
-    }
+        if (error) throw error;
 
-    // ===========================
-    // Create an Article
-    // ===========================
-    addArticleBtn.addEventListener("click", async function () {
-        const session = JSON.parse(localStorage.getItem("session"));
-        if (!session || session.user.role !== "admin") {
-            alert("Unauthorized");
-            return;
-        }
+        articlesContainer.innerHTML = ""; // Clear existing content
 
-        const title = prompt("Enter the article title:");
-        const content = prompt("Enter the article content:");
-
-        if (title && content) {
-            try {
-                await fetch("http://localhost:5000/articles", {
-                    method: "POST",
-                    headers: { 
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${session.token}`
-                    },
-                    body: JSON.stringify({ title, content, user_id: session.user.id }),
-                });
-
-                loadArticles();
-            } catch (error) {
-                console.error("Error creating article:", error);
-            }
-        }
-    });
-
-    // ===========================
-    // Delete Mode Toggle
-    // ===========================
-    deleteArticleBtn.addEventListener("click", function () {
-        deleteMode = !deleteMode;
-        document.querySelectorAll(".lore-article").forEach(article => {
-            article.classList.toggle("delete-mode", deleteMode);
-            article.onclick = deleteMode ? () => deleteArticle(article.dataset.id) : null;
+        data.forEach(article => {
+            const articleElement = document.createElement("div");
+            articleElement.classList.add("lore-article");
+            articleElement.dataset.id = article.id;
+            articleElement.innerHTML = `
+                <h2>${article.title}</h2>
+                <p>${article.content}</p>
+                <small>Created: ${new Date(article.created_at).toLocaleString()}</small>
+            `;
+            articlesContainer.appendChild(articleElement);
         });
-    });
 
-    // ===========================
-    // Delete an Article 
-    // ===========================
-    async function deleteArticle(id) {
-        const session = JSON.parse(localStorage.getItem("session"));
-        if (!session || session.user.role !== "admin") {
-            alert("Unauthorized");
-            return;
-        }
+        console.log("✅ Articles loaded:", data);
+    } catch (error) {
+        console.error("❌ Error loading articles:", error);
+    }
+}
 
-        if (!confirm("Are you sure you want to delete this article?")) return;
+// ===========================
+// Create an Article (Supabase)
+// ===========================
+addArticleBtn.addEventListener("click", async function () {
+    const session = JSON.parse(localStorage.getItem("session"));
+    if (!session || session.user.role !== "admin") {
+        alert("Unauthorized");
+        return;
+    }
 
+    const title = prompt("Enter the article title:");
+    const content = prompt("Enter the article content:");
+
+    if (title && content) {
         try {
-            await fetch(`http://localhost:5000/articles/${id}`, {
-                method: "DELETE",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${session.token}`
-                }
-            });
+            const { data, error } = await window.supabaseClient
+                .from("lore_articles")
+                .insert([{ title, content }]);
 
-            loadArticles();
+            if (error) throw error;
+
+            alert("Article added successfully!");
+            loadArticles(); // Reload articles after inserting
         } catch (error) {
-            console.error("Error deleting article:", error);
+            console.error("Error creating article:", error);
+            alert("Error adding article.");
         }
     }
+});
 
-    // Ensure authentication and articles load on page load
-    async function initLorePage() {
-        await checkAuth();
-        await loadArticles();
+// ===========================
+// Delete an Article (Supabase)
+// ===========================
+async function deleteArticle(id) {
+    const session = JSON.parse(localStorage.getItem("session"));
+    if (!session || session.user.role !== "admin") {
+        alert("Unauthorized");
+        return;
     }
 
-    initLorePage();
+    if (!confirm("Are you sure you want to delete this article?")) return;
+
+    try {
+        const { error } = await window.supabaseClient
+            .from("lore_articles")
+            .delete()
+            .eq("id", id);
+
+        if (error) throw error;
+
+        alert("Article deleted successfully!");
+        loadArticles(); // Reload articles after deleting
+    } catch (error) {
+        console.error("Error deleting article:", error);
+        alert("Error deleting article.");
+    }
 });
