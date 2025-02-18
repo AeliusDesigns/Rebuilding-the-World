@@ -54,12 +54,15 @@ document.addEventListener("DOMContentLoaded", async function () {
             menuButton.addEventListener("click", function (event) {
                 event.stopPropagation(); // Prevent click from closing immediately
                 dropdownMenu.classList.toggle("show");
+
+                console.log("🔽 Dropdown menu toggled:", dropdownMenu.classList.contains("show"));
             });
 
-            // Close dropdown when clicking outside of it
+            // Close the menu when clicking outside of it
             document.addEventListener("click", function (event) {
                 if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                     dropdownMenu.classList.remove("show");
+                    console.log("❌ Dropdown menu closed");
                 }
             });
         } else {
