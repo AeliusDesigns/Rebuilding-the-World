@@ -56,8 +56,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // ===========================
     // Handle Dropdown Menu
     // ===========================
-    document.addEventListener("DOMContentLoaded", function () {
-    console.log("📜 script.js Loaded!");
+    console.log("📜 Initializing dropdown menu...");
 
     setTimeout(() => {
         const menuButton = document.getElementById("menu-button");
@@ -90,6 +89,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }, 500); // Delay by 500ms to ensure elements are loaded
 });
+
 
     // ===========================
     // Handle Map Layer Toggle
