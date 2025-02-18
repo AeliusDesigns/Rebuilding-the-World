@@ -1,16 +1,25 @@
 // ===========================
-// Initialize Supabase Client (Ensure Supabase is available before using it)
+// Import and Initialize Supabase
+// ===========================
+const { createClient } = supabase;
+
+const supabaseUrl = "https://your-project-id.supabase.co"; // Replace with your actual Supabase URL
+const supabaseAnonKey = "your-anon-key"; // Replace with your actual anon key
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// ===========================
+// Wait for DOM to Load
 // ===========================
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("Script Loaded!");
 
-    // Ensure Supabase is available
     if (!supabase) {
-        console.error("❌ Supabase is not defined in script.js.");
+        console.error("❌ Supabase is still undefined. Check your import and initialization.");
         return;
     }
 
-    console.log("✅ Supabase is available in script.js.");
+    console.log("✅ Supabase is successfully initialized.");
 
     // ===========================
     // Check If User is Logged In
@@ -27,8 +36,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         return user;
     }
 
-    // Check authentication when the page loads
     await checkAuth();
+});
 
     // ===========================
     // Handle Dropdown Menu
