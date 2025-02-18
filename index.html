@@ -6,17 +6,23 @@
     <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
     
-    <!-- Load Supabase Library -->
+    <!-- Load Supabase Library FIRST -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Load Supabase Setup Before Other Scripts -->
-    <script src="supabase.js"></script>
+    <!-- Initialize Supabase Globally -->
+    <script>
+        window.supabase = supabase.createClient(
+            "https://utanijplulkywjzjvmty.supabase.co",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
+        );
 
-    <!-- Load Other Scripts After Supabase -->
+        console.log("✅ Supabase has been initialized in index.html");
+    </script>
+
+    <!-- Now Load Other Scripts -->
     <script defer src="script.js"></script>
     <script defer src="lore.js"></script>
 </head>
-
 
 <body>
 
