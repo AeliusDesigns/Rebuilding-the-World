@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         return user;
     }
 
-    await checkAuth
+    await checkAuth();
 
     // ===========================
     // Handle Dropdown Menu
@@ -47,23 +47,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (menuButton && dropdownMenu) {
         console.log("✅ Menu button and dropdown menu found!");
 
-      menuButton.addEventListener("click", function (event) {
-    event.stopPropagation();
+        menuButton.addEventListener("click", function (event) {
+            event.stopPropagation();
 
-    dropdownMenu.classList.toggle("show");
-    menuButton.classList.toggle("active");
+            dropdownMenu.classList.toggle("show");
+            menuButton.classList.toggle("active");
 
-    const isExpanded = dropdownMenu.classList.contains("show"); // More reliable way to check
-    menuButton.setAttribute("aria-expanded", isExpanded); // Set aria-expanded directly
-});
-
-document.addEventListener("click", function (event) {
-    if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.classList.remove("show");
-        menuButton.classList.remove("active");
-        menuButton.setAttribute("aria-expanded", "false");
-    }
-});
+            const isExpanded = dropdownMenu.classList.contains("show");
+            menuButton.setAttribute("aria-expanded", isExpanded);
+        });
 
         document.addEventListener("click", function (event) {
             if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
@@ -76,6 +68,7 @@ document.addEventListener("click", function (event) {
     } else {
         console.error("❌ Menu button or dropdown menu not found!");
     }
+});
 
     // ===========================
     // Handle Map Layer Toggle
@@ -103,7 +96,7 @@ document.addEventListener("click", function (event) {
             }
 
             // Activate the clicked button & show corresponding map layer
-            const selectedButton = document.querySelector(.map-toggle[data-layer="${selectedLayer}"]);
+            const selectedButton = document.querySelector(`.map-toggle[data-layer="${selectedLayer}"]`);
             if (selectedButton) {
                 selectedButton.classList.add("active");
             }
@@ -134,7 +127,7 @@ document.addEventListener("click", function (event) {
 
         const { data, error } = await window.supabaseClient.storage
             .from("your-bucket-name") // Replace with your actual bucket name
-            .upload(uploads/${file.name}, file, {
+            .upload(`uploads/${file.name}`, file, {
                 cacheControl: "3600",
                 upsert: false
             });
