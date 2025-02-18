@@ -1,10 +1,10 @@
 // ===========================
 // Import and Initialize Supabase
 // ===========================
-const { createClient } = window.supabase;  // Fix Supabase import
+const { createClient } = window.supabase;  
 
-const supabaseUrl = "https://your-project-id.supabase.co"; // Replace with your actual Supabase URL
-const supabaseAnonKey = "your-anon-key"; // Replace with your actual anon key
+const supabaseUrl = "https://utanijplulkywjzjvmty.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk";
 
 window.supabaseClient = createClient(supabaseUrl, supabaseAnonKey); // Store in window
 
