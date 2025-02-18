@@ -117,4 +117,4 @@ async function uploadFile(file) {
         alert("File uploaded successfully!");
         console.log("Uploaded file data:", data);
     }
-}
+});
