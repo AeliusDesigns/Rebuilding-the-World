@@ -1,21 +1,16 @@
 // ===========================
 // Initialize Supabase Client
 // ===========================
-
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script Loaded!");
-
-    // Initialize Supabase Client
-    const supabase = window.supabase.createClient(
-        "https://utanijplulkywjzjvmty.supabase.co", 
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
-    )
+const supabase = supabase.createClient(
+    "https://utanijplulkywjzjvmty.supabase.co", 
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
+);
 
 // ===========================
 // Check If User is Logged In
 // ===========================
 async function checkAuth() {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const { data: user, error } = await supabase.auth.getUser();
     
     if (error || !user) {
         console.warn("User not authenticated.");
@@ -27,14 +22,17 @@ async function checkAuth() {
 }
 
 // ===========================
-// Handle Dropdown Menu 
+// Main Script (Runs After Page Loads)
 // ===========================
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("Script Loaded!");
 
     // Check if the user is logged in when the page loads
     await checkAuth();
-    
+
+    // ===========================
+    // Handle Dropdown Menu
+    // ===========================
     const menuButton = document.getElementById("menu-button");
     const dropdownMenu = document.getElementById("dropdown-menu");
 
@@ -48,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // ===========================
-    // Handle Map Layer Toggle 
+    // Handle Map Layer Toggle
     // ===========================
     if (document.body.classList.contains("map-page")) {
         console.log("Map Page Detected!");
@@ -117,4 +115,4 @@ async function uploadFile(file) {
         alert("File uploaded successfully!");
         console.log("Uploaded file data:", data);
     }
-});
+}
