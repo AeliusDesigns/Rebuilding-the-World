@@ -52,51 +52,69 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Create an Article (Supabase)
     // ===========================
     if (addArticleBtn) {
-        addArticleBtn.addEventListener("click", async function () {
-            const session = JSON.parse(localStorage.getItem("session"));
-            if (!session || session.user.role !== "admin") {
-                alert("Unauthorized");
-                return;
+    addArticleBtn.addEventListener("click", async function () {
+        // Get current user from Supabase
+        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
+        
+        if (error || !user) {
+            alert("Unauthorized: Please log in.");
+            return;
+        }
+
+        // Check if user is an admin from the database
+        const { data: userData, error: roleError } = await window.supabaseClient
+            .from("users") // Replace "users" with your actual user role table
+            .select("role")
+            .eq("id", user.id)
+            .single();
+
+        if (roleError || !userData || userData.role !== "admin") {
+            alert("Unauthorized: You do not have admin permissions.");
+            return;
+        }
+
+        const title = prompt("Enter the article title:");
+        const content = prompt("Enter the article content:");
+
+        if (title && content) {
+            try {
+                const { data, error } = await window.supabaseClient
+                    .from("lore_articles")
+                    .insert([{ title, content }]);
+
+                if (error) throw error;
+
+                alert("Article added successfully!");
+                loadArticles(); // Reload articles after inserting
+            } catch (error) {
+                console.error("Error creating article:", error);
+                alert("Error adding article.");
             }
-
-            const title = prompt("Enter the article title:");
-            const content = prompt("Enter the article content:");
-
-            if (title && content) {
-                try {
-                    const { data, error } = await window.supabaseClient
-                        .from("lore_articles")
-                        .insert([{ title, content }]);
-
-                    if (error) throw error;
-
-                    alert("Article added successfully!");
-                    loadArticles(); // Reload articles after inserting
-                } catch (error) {
-                    console.error("Error creating article:", error);
-                    alert("Error adding article.");
-                }
-            }
-        });
-    }
+        }
+    });
+}
 
     // ===========================
     // Delete an Article (Supabase)
     // ===========================
-    if (deleteArticleBtn) {
-        deleteArticleBtn.addEventListener("click", function () {
-            deleteMode = !deleteMode;
-            document.querySelectorAll(".lore-article").forEach(article => {
-                article.classList.toggle("delete-mode", deleteMode);
-                article.onclick = deleteMode ? () => deleteArticle(article.dataset.id) : null;
-            });
-        });
-    }
-
     async function deleteArticle(id) {
-        const session = JSON.parse(localStorage.getItem("session"));
-        if (!session || session.user.role !== "admin") {
-            alert("Unauthorized");
+        // Get the currently logged-in user
+        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
+
+        if (error || !user) {
+            alert("Unauthorized: Please log in.");
+            return;
+        }
+
+        // Check if user is an admin
+        const { data: userData, error: roleError } = await window.supabaseClient
+            .from("users") // Replace "users" with your actual user role table
+            .select("role")
+            .eq("id", user.id)
+            .single();
+
+        if (roleError || !userData || userData.role !== "admin") {
+            alert("Unauthorized: You do not have admin permissions.");
             return;
         }
 
