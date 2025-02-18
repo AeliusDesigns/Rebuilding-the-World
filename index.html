@@ -7,51 +7,23 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", async function() {
-            if (typeof supabase === "undefined" ||!supabase.createClient) {
-                console.error("❌ Supabase library failed to load.");
-                return;
-            }
-
+        document.addEventListener("DOMContentLoaded", function() {
             window.supabase = supabase.createClient(
                 "https://utanijplulkywjzjvmty.supabase.co",
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
             );
-            console.log("✅ Supabase initialized successfully");
+            console.log("✅ Supabase initialized");
         });
     </script>
-    <script defer src="script.js"></script>
-    <script defer src="lore.js"></script>
+    <script src="script.js"></script>
+    <script src="lore.js"></script>
 </head>
 <body>
     <header>
         <h1>Rebuilding the World</h1>
-        <button id="menu-button" aria-expanded="false">☰</button> </header>
-
-    <nav id="dropdown-menu" class="hidden">
-        <ul>
-            <li><a href="map.html">World Map</a></li>
-            <li><a href="world_lore.html">World Lore</a></li>
-            <li><a href="nation_manager.html">Nation Manager</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="welcome">
-            <h2>Welcome to Rebuilding the World</h2>
-            <p>Here, you can describe your game and what it's about.</p>
-        </section>
-
-        <section id="updates">
-            <h2>Recent Updates</h2>
-            <p>List recent changes, additions, and news about the game here.</p>
-        </section>
-    </main>
-
-    <footer>
-        <a href="https://discord.gg/pufcfTCe9T" target="_blank" id="discord-button">Join Our Discord</a>
-    </footer>
-
+        <button id="menu-button">☰</button>
+    </header>
+     
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const menuButton = document.getElementById("menu-button");
@@ -59,21 +31,66 @@
 
             menuButton.addEventListener("click", function() {
                 dropdownMenu.classList.toggle("show");
-                menuButton.classList.toggle("active");
-
-                // Toggle aria-expanded attribute
-                const expanded = menuButton.getAttribute("aria-expanded") === "true" || false;
-                menuButton.setAttribute("aria-expanded",!expanded);
+                menuButton.classList.toggle("active"); // Add this line
+         });
+            
+    <nav id="dropdown-menu" class="hidden">
+        <ul>
+            <li><a href="map.html">World Map</a></li>
+            <li><a href="world_lore.html">World Lore</a></li>
+            <li><a href="nation_manager.html">Nation Manager</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="welcome">
+            <h2>Welcome to Rebuilding the World</h2>
+            <p>Here, you can describe your game and what it's about.</p>
+        </section>
+        
+        <section id="updates">
+            <h2>Recent Updates</h2>
+            <p>List recent changes, additions, and news about the game here.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <a href="https://discord.gg/pufcfTCe9T" target="_blank" id="discord-button">Join Our Discord</a>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuButton = document.getElementById("menu-button");
+            const dropdownMenu = document.getElementById("dropdown-menu");
+    
+            menuButton.addEventListener("click", function() {
+                dropdownMenu.classList.toggle("show");
             });
-
+    
             document.addEventListener("click", function(event) {
-                if (!menuButton.contains(event.target) &&!dropdownMenu.contains(event.target)) {
+                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                     dropdownMenu.classList.remove("show");
-                    menuButton.classList.remove("active"); // Ensure button is deactivated
-                    menuButton.setAttribute("aria-expanded", "false"); // Ensure aria-expanded is false
                 }
             });
         });
     </script>
+    
+    <style>
+        #dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 10px;
+            background: #222;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+    
+        #dropdown-menu.show {
+            display: block !important;
+        }
+    </style>
 </body>
 </html>
