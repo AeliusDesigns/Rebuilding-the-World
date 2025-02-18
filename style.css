@@ -103,7 +103,7 @@ a:hover {
     display: block;
 }
 
-.show {
+#dropdown-menu.show {
     display: block !important;
 }
 
