@@ -51,21 +51,21 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (menuButton && dropdownMenu) {
             console.log("✅ Menu button found!");
 
-        menuButton.addEventListener("click", function (event) {
-            event.stopPropagation(); // Prevent the click from propagating
-            dropdownMenu.classList.toggle("show");
-        });
+            menuButton.addEventListener("click", function (event) {
+                event.stopPropagation(); // Prevent click from closing immediately
+                dropdownMenu.classList.toggle("show");
+            });
 
-        // Close the menu when clicking outside of it
-        document.addEventListener("click", function (event) {
-            if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                dropdownMenu.classList.remove("show");
-            }
-        });
-    } else {
-        console.error("❌ Menu button or dropdown menu not found!");
-    }
-});
+            // Close dropdown when clicking outside of it
+            document.addEventListener("click", function (event) {
+                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove("show");
+                }
+            });
+        } else {
+            console.error("❌ Menu button or dropdown menu not found!");
+        }
+    });
 
 
     // ===========================
