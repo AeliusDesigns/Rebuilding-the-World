@@ -165,7 +165,11 @@
     <footer>
         <a id="discord-button" href="#">Join Discord</a>
     </footer>
-    
+
+    #menu-button.active {
+    background-color: #444; /* Change background color when active */
+    /* Add any other styles you want for the active state */
+
     <script>
         document.getElementById("menu-button").addEventListener("click", function() {
             document.getElementById("dropdown-menu").classList.toggle("show");
