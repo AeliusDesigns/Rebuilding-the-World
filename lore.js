@@ -134,6 +134,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     //  Ensure authentication and articles load on page load
+    async function initLorePage() {
     await checkAuth();
     await loadArticles();
+}
+
+initLorePage();
 }); 
