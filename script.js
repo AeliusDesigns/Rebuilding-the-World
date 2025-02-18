@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log("🔽 Dropdown menu class list after toggle:", dropdownMenu.classList);
 
             menuButton.classList.toggle("active");
-            const expanded = menuButton.getAttribute("aria-expanded") === "true" || false;
+            const expanded = menuButton.getAttribute("aria-expanded") === "true" || false; // This line is the problem
             menuButton.setAttribute("aria-expanded", !expanded);
             console.log("🔽 aria-expanded set to:", !expanded);
         });
