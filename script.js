@@ -22,9 +22,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     console.log("✅ Supabase is available in script.js.");
 
-    // ===========================
-    // Check If User is Logged In
-    // ===========================
     async function checkAuth() {
         const { data: { user }, error } = await window.supabaseClient.auth.getUser();
         
@@ -37,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         return user;
     }
 
-    await checkAuth();
+    await checkAuth
 
     // ===========================
     // Handle Dropdown Menu
@@ -46,33 +43,35 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const menuButton = document.getElementById("menu-button");
     const dropdownMenu = document.getElementById("dropdown-menu");
-    
+
     if (menuButton && dropdownMenu) {
-        console.log("✅ Menu button found!");
+        console.log("✅ Menu button and dropdown menu found!");
 
         menuButton.addEventListener("click", function (event) {
             event.stopPropagation(); // Prevents click from closing immediately
+            console.log("📜 Menu button clicked");
 
-            //  Remove "hidden" class first, if it exists
             dropdownMenu.classList.remove("hidden");
-    
-            //  Then, toggle "show" class
             dropdownMenu.classList.toggle("show");
+            console.log("🔽 Dropdown menu class list:", dropdownMenu.classList);
 
-            console.log("🔽 Dropdown menu toggled:", dropdownMenu.classList.contains("show"));
+            menuButton.classList.toggle("active");
+            const expanded = menuButton.getAttribute("aria-expanded") === "true" || false;
+            menuButton.setAttribute("aria-expanded", !expanded);
+            console.log("🔽 aria-expanded set to:", !expanded);
         });
 
-        //  Close the menu when clicking outside of it
         document.addEventListener("click", function (event) {
             if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                 dropdownMenu.classList.remove("show");
                 console.log("❌ Dropdown menu closed");
+                menuButton.classList.remove("active");
+                menuButton.setAttribute("aria-expanded", "false");
             }
         });
     } else {
         console.error("❌ Menu button or dropdown menu not found!");
     }
-
 
     // ===========================
     // Handle Map Layer Toggle
