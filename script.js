@@ -59,39 +59,36 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.addEventListener("DOMContentLoaded", function () {
     console.log("📜 script.js Loaded!");
 
-    // Get menu button & dropdown menu
-    const menuButton = document.getElementById("menu-button");
-    const dropdownMenu = document.getElementById("dropdown-menu");
+    setTimeout(() => {
+        const menuButton = document.getElementById("menu-button");
+        const dropdownMenu = document.getElementById("dropdown-menu");
 
-    // Check if they exist before attaching event listener
-    if (menuButton && dropdownMenu) {
-        console.log("✅ Menu button & dropdown menu found!");
+        if (menuButton && dropdownMenu) {
+            console.log("✅ Menu button & dropdown menu found!");
 
-        menuButton.addEventListener("click", function (event) {
-            event.stopPropagation();
-            console.log("✅ Menu button clicked!");
+            menuButton.addEventListener("click", function (event) {
+                event.stopPropagation();
+                console.log("✅ Menu button clicked!");
 
-            dropdownMenu.classList.toggle("show");
-            menuButton.classList.toggle("active");
+                dropdownMenu.classList.toggle("show");
+                menuButton.classList.toggle("active");
 
-            // Set aria-expanded for accessibility
-            const isExpanded = dropdownMenu.classList.contains("show");
-            menuButton.setAttribute("aria-expanded", isExpanded);
-        });
+                const isExpanded = dropdownMenu.classList.contains("show");
+                menuButton.setAttribute("aria-expanded", isExpanded);
+            });
 
-        // Close menu when clicking outside
-        document.addEventListener("click", function (event) {
-            if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                dropdownMenu.classList.remove("show");
-                menuButton.classList.remove("active");
-                menuButton.setAttribute("aria-expanded", "false");
-                console.log("❌ Dropdown menu closed");
-            }
-        });
-
-    } else {
-        console.error("❌ Menu button or dropdown menu NOT found!");
-    }
+            document.addEventListener("click", function (event) {
+                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.remove("show");
+                    menuButton.classList.remove("active");
+                    menuButton.setAttribute("aria-expanded", "false");
+                    console.log("❌ Dropdown menu closed");
+                }
+            });
+        } else {
+            console.error("❌ Menu button or dropdown menu NOT found!");
+        }
+    }, 500); // Delay by 500ms to ensure elements are loaded
 });
 
     // ===========================
