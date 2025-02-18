@@ -5,34 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Load Supabase Library FIRST -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Initialize Supabase Globally -->
     <script>
+        // Initialize Supabase and check if it's ready
         window.supabase = supabase.createClient(
             "https://utanijplulkywjzjvmty.supabase.co",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
         );
 
-        console.log("✅ Supabase has been initialized in index.html");
-    </script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded and parsed');
+            if (window.supabase) {
+                console.log("✅ Supabase has been initialized in index.html");
+                // Now load other scripts that depend on Supabase
+                const script1 = document.createElement('script');
+                script1.defer = true;
+                script1.src = 'script.js';
+                document.body.appendChild(script1);
 
-    <!-- Now Load Other Scripts -->
-    <script defer src="script.js"></script>
-    <script defer src="lore.js"></script>
+                const script2 = document.createElement('script');
+                script2.defer = true;
+                script2.src = 'lore.js';
+                document.body.appendChild(script2);
+            } else {
+                console.error("Supabase failed to initialize.");
+            }
+        });
+    </script>
 </head>
 
 <body>
-
-    <!-- Header Section -->
     <header>
         <h1>Rebuilding the World</h1>
-        <button id="menu-button">☰</button> <!-- This is the dropdown button -->
+        <button id="menu-button" aria-label="Menu">☰</button>
     </header>
 
-    <!-- Dropdown Menu (Initially Hidden) -->
     <nav id="dropdown-menu" class="hidden">
         <ul>
             <li><a href="map.html">World Map</a></li>
@@ -41,24 +50,29 @@
         </ul>
     </nav>
 
-    <!-- Welcome Message -->
     <section id="welcome">
         <h2>Welcome to Rebuilding the World</h2>
         <p>This is where you can describe your game and what it's about.</p>
     </section>
 
-    <!-- Updates Section -->
     <section id="updates">
         <h2>Recent Updates</h2>
         <p>Here you can list recent changes, additions, and news about the game.</p>
     </section>
-    
-    <!-- Footer -->
-<footer>
-    <a href="https://discord.gg/pufcfTCe9T" target="_blank" id="discord-button">
-        Join Our Discord
-    </a>
-</footer>
-    
+
+    <footer>
+        <a href="https://discord.gg/pufcfTCe9T" target="_blank" id="discord-button" rel="noopener noreferrer">
+            Join Our Discord
+        </a>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById('menu-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+
+        menuButton.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
