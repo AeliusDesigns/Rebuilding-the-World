@@ -1,186 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed UI</title>
-    <style>
-        /* ==================== General Styles ==================== */
-        * {
-            font-family: Arial, sans-serif !important;
-            box-sizing: border-box;
-        }
-        
-        html, body {
-            background-color: #121212;
-            color: #ddd;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        
-        /* ==================== Header Styling ==================== */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #222;
-            padding: 10px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            color: white;
-            border-bottom: 3px solid #444;
-        }
-        
-        header h1, header a {
-            color: white !important;
-            text-decoration: none;
-        }
-        
-        /* Links */
-        a {
-            color: #00bcd4;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        
-        a:hover {
-            color: #fff;
-        }
-        
-        /* Dropdown Button */
-        #menu-button {
-            background: #222;
-            border: 2px solid #888;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 8px;
-            transition: all 0.3s ease-in-out;
-            margin-left: auto;
-        }
-        
-        #menu-button:hover {
-            background: #444;
-            border-color: white;
-            transform: scale(1.1);
-        }
-        
-        #dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 10px;
-            background: #222;
-            border: 1px solid #444;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        #dropdown-menu ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        #dropdown-menu ul li {
-            padding: 10px;
-        }
-        
-        #dropdown-menu ul li a {
-            text-decoration: none;
-            color: white;
-            display: block;
-        }
-        
-        /* Show Dropdown */
-        .show {
-            display: block !important;
-        }
-        
-        /* ==================== Content Styling ==================== */
-        main {
-            margin-top: 80px;
-            text-align: center;
-        }
-        
-        /* ==================== Footer Styling ==================== */
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #222;
-            padding: 10px 20px;
-            text-align: right;
-            z-index: 1000;
-            border-top: 3px solid #444;
-        }
-        
-        /* Discord Button */
-        #discord-button {
-            background: #222;
-            color: white;
-            padding: 10px 15px;
-            border: 2px solid #888;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        #discord-button:hover {
-            background: #444;
-            border-color: white;
-            transform: scale(1.1);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Website Title</h1>
-        <button id="menu-button">☰</button>
-        <div id="dropdown-menu">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-    
-    <main>
-        <section id="welcome">
-            <h2>Welcome!</h2>
-            <p>This is the main content area.</p>
-        </section>
-    </main>
-    
-    <footer>
-        <a id="discord-button" href="#">Join Discord</a>
-    </footer>
+/* ==================== General Styles ==================== */
+* {
+    font-family: Arial, sans-serif!important;
+    box-sizing: border-box;
+}
 
-    #menu-button.active {
+html, 
+body {
+    background-color: #121212;
+    color: #ddd;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==================== Header Styling ==================== */
+header {
+    align-items: center;
+    background-color: #222;
+    border-bottom: 3px solid #444;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1, 
+header a {
+    color: white!important;
+    text-decoration: none;
+}
+
+/* Links */
+a {
+    color: #00bcd4;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/* Dropdown Button */
+#menu-button {
+    background: #222;
+    border: 2px solid #888;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: auto;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+#menu-button:hover {
+    background: #444;
+    border-color: white;
+    transform: scale(1.1);
+}
+
+#menu-button.active {
     background-color: #444; /* Change background color when active */
     /* Add any other styles you want for the active state */
+}
 
-    <script>
-        document.getElementById("menu-button").addEventListener("click", function() {
-            document.getElementById("dropdown-menu").classList.toggle("show");
-        });
+#dropdown-menu {
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    padding: 10px;
+}
 
-        // Close dropdown when clicking outside
-        document.addEventListener("click", function(event) {
-            if (!event.target.closest("#menu-button") && !event.target.closest("#dropdown-menu")) {
-                document.getElementById("dropdown-menu").classList.remove("show");
-            }
-        });
-    </script>
-</body>
-</html>
+#dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#dropdown-menu ul li {
+    padding: 10px;
+}
+
+#dropdown-menu ul li a {
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+
+/* Show Dropdown */.show {
+    display: block!important;
+}
+
+/* ==================== Content Styling ==================== */
+main {
+    margin-top: 80px;
+    text-align: center;
+}
+
+/* ==================== Footer Styling ==================== */
+footer {
+    background-color: #222;
+    border-top: 3px solid #444;
+    bottom: 0;
+    left: 0;
+    padding: 10px 20px;
+    position: fixed;
+    text-align: right;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Discord Button */
+#discord-button {
+    background: #222;
+    border: 2px solid #888;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+#discord-button:hover {
+    background: #444;
+    border-color: white;
+    transform: scale(1.1);
+}
