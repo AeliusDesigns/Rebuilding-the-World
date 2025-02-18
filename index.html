@@ -6,13 +6,17 @@
     <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
     
-    <!--  Load Supabase BEFORE any custom scripts -->
+    <!-- Load Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!--  Load script.js AFTER Supabase -->
+    <!-- Load Supabase Setup Before Other Scripts -->
+    <script src="supabase.js"></script>
+
+    <!-- Load Other Scripts After Supabase -->
     <script defer src="script.js"></script>
     <script defer src="lore.js"></script>
 </head>
+
 
 <body>
 
