@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let user = null; // Store authenticated user
     let deleteMode = false;
 
-    // ✅ Get Supabase User Session
+    // Get Supabase User Session
     async function checkAuth() {
         const { data: { user }, error } = await supabase.auth.getUser();
         if (error || !user) return console.error("User not authenticated.");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    // ✅ Load Articles from Supabase
+    // Load Articles from Supabase
     async function loadArticles() {
         const response = await fetch("http://localhost:5000/articles");
         const data = await response.json();
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         data.forEach(article => createArticle(article.id, article.title, article.content));
     }
 
-    // ✅ Create an Article (Send Token to Backend)
+    // Create an Article (Send Token to Backend)
     addArticleBtn.addEventListener("click", async function () {
         const session = JSON.parse(localStorage.getItem("session"));
         if (!session || session.user.role !== "admin") return alert("Unauthorized");
