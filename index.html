@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         document.addEventListener("DOMContentLoaded", async function() {
-            if (typeof supabase === "undefined" ||!supabase.createClient) {
+            if (typeof supabase === "undefined" || !supabase.createClient) {
                 console.error("❌ Supabase library failed to load.");
                 return;
             }
@@ -26,7 +26,8 @@
 <body>
     <header>
         <h1>Rebuilding the World</h1>
-        <button id="menu-button" aria-expanded="false">☰</button> </header>
+        <button id="menu-button" aria-expanded="false">☰</button>
+    </header>
 
     <nav id="dropdown-menu">
         <ul>
@@ -57,17 +58,18 @@
             const menuButton = document.getElementById("menu-button");
             const dropdownMenu = document.getElementById("dropdown-menu");
 
-            menuButton.addEventListener("click", function() {
+            menuButton.addEventListener("click", function(event) {
+                event.stopPropagation(); // Prevents click from closing immediately
                 dropdownMenu.classList.toggle("show");
                 menuButton.classList.toggle("active");
 
                 // Toggle aria-expanded attribute
                 const expanded = menuButton.getAttribute("aria-expanded") === "true" || false;
-                menuButton.setAttribute("aria-expanded",!expanded);
+                menuButton.setAttribute("aria-expanded", !expanded);
             });
 
             document.addEventListener("click", function(event) {
-                if (!menuButton.contains(event.target) &&!dropdownMenu.contains(event.target)) {
+                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                     dropdownMenu.classList.remove("show");
                     menuButton.classList.remove("active"); // Ensure button is deactivated
                     menuButton.setAttribute("aria-expanded", "false"); // Ensure aria-expanded is false
