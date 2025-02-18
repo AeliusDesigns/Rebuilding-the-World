@@ -12,20 +12,21 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // Wait for DOM to Load
 // ===========================
 document.addEventListener("DOMContentLoaded", async function () {
-    console.log("Script Loaded!");
+    console.log("📜 script.js Loaded!");
 
-    if (!supabase) {
-        console.error("❌ Supabase is still undefined. Check your import and initialization.");
+    // Ensure Supabase is available
+    if (!window.supabaseClient) {
+        console.error("❌ Supabase is not initialized. Check supabase.js!");
         return;
     }
 
-    console.log("✅ Supabase is successfully initialized.");
+    console.log("✅ Supabase is available in script.js.");
 
     // ===========================
     // Check If User is Logged In
     // ===========================
     async function checkAuth() {
-        const { data: user, error } = await supabase.auth.getUser();
+        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
         
         if (error || !user) {
             console.warn("User not authenticated.");
