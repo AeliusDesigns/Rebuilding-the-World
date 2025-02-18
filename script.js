@@ -1,22 +1,39 @@
 // ===========================
 // Initialize Supabase Client (Ensure Supabase is available before using it)
 // ===========================
-let supabase; // Define globally
-
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Script Loaded!");
 
-    // Check if Supabase is loaded
-    if (window.supabase) {
-        supabase = window.supabase.createClient(
-            "https://utanijplulkywjzjvmty.supabase.co", 
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
-        );
-        console.log("Supabase Loaded Successfully!");
-    } else {
-        console.error("Supabase failed to load.");
+    // Ensure Supabase is available
+    if (!supabase) {
+        console.error("❌ Supabase is not defined in script.js.");
         return;
     }
+
+    console.log("✅ Supabase is available in script.js.");
+
+    // ===========================
+    // Handle Dropdown Menu
+    // ===========================
+    const menuButton = document.getElementById("menu-button");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+
+    if (menuButton && dropdownMenu) {
+        console.log("Menu button found!");
+        menuButton.addEventListener("click", function () {
+            dropdownMenu.classList.toggle("show");
+        });
+
+        // Close the menu when clicking outside of it
+        document.addEventListener("click", function (event) {
+            if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove("show");
+            }
+        });
+    } else {
+        console.error("Menu button or dropdown menu not found!");
+    }
+});
 
 // ===========================
 // Check If User is Logged In
