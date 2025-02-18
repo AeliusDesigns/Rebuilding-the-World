@@ -1,7 +1,9 @@
 /* ==================== General Styles (For All Pages) ==================== */
 
+/* Apply to the entire document */
 * {
-    font-family: Arial, sans-serif !important;
+    box-sizing: border-box; /* Include padding and border in element size */
+    font-family: Arial, sans-serif; /* Set default font */
 }
 
 html, body {
@@ -12,46 +14,37 @@ html, body {
     padding: 0;
 }
 
-body {
-    background-color: #121212 !important;
-    color: #ddd !important;
-}
-
-/* ==================== Header Styling ==================== */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #222; 
-    padding: 10px 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    color: white;
-    border-bottom: 3px solid #444;
-}
-
-header h1, 
-header a {
-    color: white !important; 
-    text-decoration: none;
-}
-
-h1 {
-    margin: 0;
-    padding-left: 10px;
-}
-
 /* Links */
 a {
     color: #00bcd4;
     text-decoration: none;
-    transition: 0.3s;
+    transition: color 0.3s; /* Smooth color transition on hover */
 }
 
 a:hover {
     color: #fff;
+}
+
+
+/* ==================== Header Styling ==================== */
+
+header {
+    background-color: #222; 
+    border-bottom: 3px solid #444;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure header stays on top */
+}
+
+header h1 {
+    margin: 0;
+    padding-left: 10px;
 }
 
 /* Dropdown Button */
@@ -64,7 +57,7 @@ a:hover {
     padding: 10px;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
-    margin-left: auto; 
+    margin-left: auto; /* Push button to the right */
     margin-right: 40px;
 }
 
@@ -74,17 +67,22 @@ a:hover {
     transform: scale(1.1);
 }
 
+/* Dropdown Menu */
 #dropdown-menu {
-    display: none;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
     position: absolute;
     top: 60px;
     right: 10px;
-    background: #222;
-    border: 1px solid #444;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    border-radius: 8px; 
+    z-index: 1; /* Ensure menu is above other content */
+}
+
+#dropdown-menu.active { 
+    display: block; /* Show when active */
 }
 
 #dropdown-menu ul {
@@ -93,81 +91,70 @@ a:hover {
     margin: 0;
 }
 
-#dropdown-menu ul li {
+#dropdown-menu li {
     padding: 10px;
 }
 
-#dropdown-menu ul li a {
-    text-decoration: none;
+#dropdown-menu a {
     color: white;
-    display: block;
+    display: block; /* Make the whole list item clickable */
 }
 
-#dropdown-menu.show {
-    display: block !important;
-}
 
 /* ==================== Landing Page Styles (Only for index.html) ==================== */
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212; 
-    color: #ddd;
-}
-
-
-#welcome, #updates {
-    max-width: 800px;
-    margin: 100px auto 40px auto; 
-    text-align: center;
-    padding: 30px;
-    border-bottom: 1px solid #333;
+/* Sections (Welcome and Updates) */
+#welcome, 
+#updates {
     background: #6e6d6d;
+    border-bottom: 1px solid #333;
     box-shadow: 2px 2px 5px rgba(224, 191, 4, 0.8);
     border-radius: 10px;
     color: white; 
+    max-width: 800px;
+    margin: 100px auto 40px auto; /* Center the sections */
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* Smooth transition on hover */
 }
 
-#welcome, #updates {
-    transition: all 0.3s ease-in-out;
-}
-
-#welcome:hover, #updates:hover {
-    transform: translateY(-5px); 
+#welcome:hover, 
+#updates:hover {
     box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8); 
+    transform: translateY(-5px); 
 }
+
 
 /* ==================== Footer Styling ==================== */
+
 footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     background-color: #222;
-    padding: 10px 20px;
-    text-align: right;
-    z-index: 1000;
+    border-top: 3px solid #444;
+    bottom: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 50px; 
-    border-top: 3px solid #444;
+    left: 0;
+    padding: 10px 20px;
+    position: fixed;
+    text-align: right;
+    width: 100%;
+    z-index: 1000; /* Ensure footer stays on top */
 }
 
 /* Discord Button */
 #discord-button {
     background: #222; 
-    color: white;
-    padding: 10px 15px;
     border: 2px solid #888;
     border-radius: 8px; 
-    text-decoration: none;
+    color: white;
     font-size: 14px;
     font-weight: bold;
-    transition: all 0.3s ease-in-out;
     margin-right: 40px; 
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 
 #discord-button:hover {
