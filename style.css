@@ -70,7 +70,7 @@ a:hover {
 
 /* Dropdown Menu */
 #dropdown-menu {
-    display: none;
+    display: none; 
     position: absolute;
     top: 80px;
     right: 10px;
