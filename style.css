@@ -105,8 +105,9 @@ a:hover {
 
 #dropdown-menu.show {
     display: block !important;
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 0.3s ease-in-out;
 }
 
 /* ==================== Landing Page Styles (Only for index.html) ==================== */
