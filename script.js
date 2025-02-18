@@ -1,5 +1,14 @@
 console.log("✅ script.js is running!");
 
+const menuButton = document.getElementById("menu-button");
+const dropdownMenu = document.getElementById("dropdown-menu");
+
+if (menuButton && dropdownMenu) {
+    console.log("✅ Menu button & dropdown menu found!");
+} else {
+    console.error("❌ Menu button or dropdown menu NOT found on this page!");
+}
+
 // ===========================
 // Import and Initialize Supabase
 // ===========================
