@@ -80,7 +80,7 @@ a:hover {
 }
 
 #dropdown-menu {
-    display: none;
+    display: none !important;
     position: absolute;
     top: 80px;
     right: 10px;
@@ -107,7 +107,6 @@ a:hover {
     display: block;
 }
 
-/* Show dropdown when "show" class is added */
 #dropdown-menu.show {
     display: block !important;
 }
