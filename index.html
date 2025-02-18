@@ -5,41 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
-
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <script>
-        // Initialize Supabase and check if it's ready
         window.supabase = supabase.createClient(
             "https://utanijplulkywjzjvmty.supabase.co",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
         );
-
-        window.addEventListener('DOMContentLoaded', (event) => {
-            console.log('DOM fully loaded and parsed');
-            if (window.supabase) {
-                console.log("✅ Supabase has been initialized in index.html");
-                // Now load other scripts that depend on Supabase
-                const script1 = document.createElement('script');
-                script1.defer = true;
-                script1.src = 'script.js';
-                document.body.appendChild(script1);
-
-                const script2 = document.createElement('script');
-                script2.defer = true;
-                script2.src = 'lore.js';
-                document.body.appendChild(script2);
-            } else {
-                console.error("Supabase failed to initialize.");
-            }
-        });
+        console.log("✅ Supabase has been initialized in index.html");
     </script>
+    <script defer src="script.js"></script>
+    <script defer src="lore.js"></script>
 </head>
-
 <body>
+
     <header>
         <h1>Rebuilding the World</h1>
-        <button id="menu-button" aria-label="Menu">☰</button>
+        <button id="menu-button">☰</button>
     </header>
 
     <nav id="dropdown-menu" class="hidden">
@@ -50,29 +31,21 @@
         </ul>
     </nav>
 
-    <section id="welcome">
-        <h2>Welcome to Rebuilding the World</h2>
-        <p>This is where you can describe your game and what it's about.</p>
-    </section>
+    <main>
+        <section id="welcome">
+            <h2>Welcome to Rebuilding the World</h2>
+            <p>Here, you can describe your game and what it's about.</p>
+        </section>
 
-    <section id="updates">
-        <h2>Recent Updates</h2>
-        <p>Here you can list recent changes, additions, and news about the game.</p>
-    </section>
+        <section id="updates">
+            <h2>Recent Updates</h2>
+            <p>List recent changes, additions, and news about the game here.</p>
+        </section>
+    </main>
 
     <footer>
-        <a href="https://discord.gg/pufcfTCe9T" target="_blank" id="discord-button" rel="noopener noreferrer">
-            Join Our Discord
-        </a>
+        <a href="https://discord.gg/pufcfTCe9T" target="_blank" id="discord-button">Join Our Discord</a>
     </footer>
 
-    <script>
-        const menuButton = document.getElementById('menu-button');
-        const dropdownMenu = document.getElementById('dropdown-menu');
-
-        menuButton.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('hidden');
-        });
-    </script>
 </body>
 </html>
