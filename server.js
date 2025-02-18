@@ -108,5 +108,34 @@ app.delete("/articles/:id", authenticate, isAdmin, async (req, res) => {
     }
 });
 
+// Check Database
+// server.js (on your server)
+const express = require('express');
+const { createClient } = require('@supabase/supabase-js');
+
+const app = express();
+app.set('view engine', 'ejs'); // Use EJS templating engine
+
+const supabase = createClient('<your_supabase_url>', '<your_supabase_anon_key>');
+
+app.get('/', async (req, res) => {
+  try {
+    const { data: nations, error } = await supabase
+    .from('Nations')
+    .select('*');
+
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error fetching data');
+    } else {
+      res.render('index', { nations }); // Render the 'index.ejs' template with the data
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
