@@ -51,9 +51,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             event.stopPropagation(); // Prevents click from closing immediately
             console.log("📜 Menu button clicked");
 
-            dropdownMenu.classList.remove("hidden");
             dropdownMenu.classList.toggle("show");
-            console.log("🔽 Dropdown menu class list:", dropdownMenu.classList);
+            console.log("🔽 Dropdown menu class list after toggle:", dropdownMenu.classList);
 
             menuButton.classList.toggle("active");
             const expanded = menuButton.getAttribute("aria-expanded") === "true" || false;
