@@ -1,37 +1,46 @@
-/* ==================== General Styles ==================== */
+/* ==================== General Styles (For All Pages) ==================== */
+
 * {
-    font-family: Arial, sans-serif!important;
-    box-sizing: border-box;
+    font-family: Arial, sans-serif !important;
 }
 
-html, 
-body {
+html, body {
     background-color: #121212;
-    color: #ddd;
+    color: #ddd; 
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
+body {
+    background-color: #121212 !important;
+    color: #ddd !important;
+}
+
 /* ==================== Header Styling ==================== */
 header {
-    align-items: center;
-    background-color: #222;
-    border-bottom: 3px solid #444;
-    color: white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: #222; 
     padding: 10px 20px;
     position: fixed;
-    top: 0;
     width: 100%;
+    top: 0;
     z-index: 1000;
+    color: white;
+    border-bottom: 3px solid #444;
 }
 
 header h1, 
 header a {
-    color: white!important;
+    color: white !important; 
     text-decoration: none;
+}
+
+h1 {
+    margin: 0;
+    padding-left: 10px;
 }
 
 /* Links */
@@ -47,15 +56,16 @@ a:hover {
 
 /* Dropdown Button */
 #menu-button {
-    background: #222;
+    background: #222; 
     border: 2px solid #888;
-    border-radius: 8px;
     color: white;
-    cursor: pointer;
     font-size: 24px;
-    margin-left: auto;
+    cursor: pointer;
     padding: 10px;
+    border-radius: 8px;
     transition: all 0.3s ease-in-out;
+    margin-left: auto; 
+    margin-right: 40px;
 }
 
 #menu-button:hover {
@@ -64,27 +74,23 @@ a:hover {
     transform: scale(1.1);
 }
 
-#menu-button.active {
-    background-color: #444; /* Change background color when active */
-    /* Add any other styles you want for the active state */
-}
-
 #dropdown-menu {
-    background: #222;
-    border: 1px solid #444;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     display: none;
     position: absolute;
-    right: 10px;
     top: 60px;
+    right: 10px;
+    background: #222;
+    border: 1px solid #444;
     padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px; 
 }
 
 #dropdown-menu ul {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 #dropdown-menu ul li {
@@ -92,45 +98,76 @@ a:hover {
 }
 
 #dropdown-menu ul li a {
+    text-decoration: none;
     color: white;
     display: block;
-    text-decoration: none;
 }
 
-/* Show Dropdown */.show {
-    display: block!important;
+#dropdown-menu.show {
+    display: block !important;
 }
 
-/* ==================== Content Styling ==================== */
-main {
-    margin-top: 80px;
+/* ==================== Landing Page Styles (Only for index.html) ==================== */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; 
+    color: #ddd;
+}
+
+
+#welcome, #updates {
+    max-width: 800px;
+    margin: 100px auto 40px auto; 
     text-align: center;
+    padding: 30px;
+    border-bottom: 1px solid #333;
+    background: #6e6d6d;
+    box-shadow: 2px 2px 5px rgba(224, 191, 4, 0.8);
+    border-radius: 10px;
+    color: white; 
+}
+
+#welcome, #updates {
+    transition: all 0.3s ease-in-out;
+}
+
+#welcome:hover, #updates:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8); 
 }
 
 /* ==================== Footer Styling ==================== */
 footer {
-    background-color: #222;
-    border-top: 3px solid #444;
+    position: fixed;
     bottom: 0;
     left: 0;
-    padding: 10px 20px;
-    position: fixed;
-    text-align: right;
     width: 100%;
+    background-color: #222;
+    padding: 10px 20px;
+    text-align: right;
     z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px; 
+    border-top: 3px solid #444;
 }
 
 /* Discord Button */
 #discord-button {
-    background: #222;
-    border: 2px solid #888;
-    border-radius: 8px;
+    background: #222; 
     color: white;
+    padding: 10px 15px;
+    border: 2px solid #888;
+    border-radius: 8px; 
+    text-decoration: none;
     font-size: 14px;
     font-weight: bold;
-    padding: 10px 15px;
-    text-decoration: none;
     transition: all 0.3s ease-in-out;
+    margin-right: 40px; 
 }
 
 #discord-button:hover {
