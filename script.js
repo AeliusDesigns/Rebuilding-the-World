@@ -103,7 +103,7 @@ document.addEventListener("click", function (event) {
             }
 
             // Activate the clicked button & show corresponding map layer
-            const selectedButton = document.querySelector(`.map-toggle[data-layer="${selectedLayer}"]`);
+            const selectedButton = document.querySelector(.map-toggle[data-layer="${selectedLayer}"]);
             if (selectedButton) {
                 selectedButton.classList.add("active");
             }
@@ -134,7 +134,7 @@ document.addEventListener("click", function (event) {
 
         const { data, error } = await window.supabaseClient.storage
             .from("your-bucket-name") // Replace with your actual bucket name
-            .upload(`uploads/${file.name}`, file, {
+            .upload(uploads/${file.name}, file, {
                 cacheControl: "3600",
                 upsert: false
             });
