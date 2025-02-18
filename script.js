@@ -30,20 +30,28 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Check if the user is logged in when the page loads
     await checkAuth();
 
-    // ===========================
-    // Handle Dropdown Menu
-    // ===========================
-    const menuButton = document.getElementById("menu-button");
-    const dropdownMenu = document.getElementById("dropdown-menu");
+// ===========================
+// Handle Dropdown Menu
+// ===========================
+const menuButton = document.getElementById("menu-button");
+const dropdownMenu = document.getElementById("dropdown-menu");
 
-    if (menuButton && dropdownMenu) {
-        console.log("Menu button found!");
-        menuButton.addEventListener("click", function () {
-            dropdownMenu.classList.toggle("show");
-        });
-    } else {
-        console.error("Menu button or dropdown menu not found!");
-    }
+if (menuButton && dropdownMenu) {
+    console.log("Menu button found!");
+
+    menuButton.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("show");
+    });
+
+    // Close the menu when clicking outside of it
+    document.addEventListener("click", function (event) {
+        if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove("show");
+        }
+    });
+} else {
+    console.error("Menu button or dropdown menu not found!");
+}
 
     // ===========================
     // Handle Map Layer Toggle
