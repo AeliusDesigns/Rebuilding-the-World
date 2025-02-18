@@ -6,7 +6,14 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 // Ensure Supabase is available before initializing
 if (window.supabase) {
-    window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: {
+            persistSession: true,  // ✅ Keeps users logged in after refresh
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+        }
+    });
+
     console.log("✅ Supabase Loaded Successfully!");
 } else {
     console.error("❌ Supabase library is missing. Make sure it's loaded in the HTML file before this script.");
