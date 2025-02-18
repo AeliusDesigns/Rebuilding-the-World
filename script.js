@@ -42,12 +42,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     // ===========================
     // Handle Dropdown Menu
     // ===========================
-    const menuButton = document.getElementById("menu-button");
-    const dropdownMenu = document.getElementById("dropdown-menu");
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("📜 script.js Loaded!");
 
-    if (menuButton && dropdownMenu) {
-        console.log("Menu button found!");
-        menuButton.addEventListener("click", function () {
+        const menuButton = document.getElementById("menu-button");
+        const dropdownMenu = document.getElementById("dropdown-menu");
+
+        if (menuButton && dropdownMenu) {
+            console.log("✅ Menu button found!");
+
+        menuButton.addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent the click from propagating
             dropdownMenu.classList.toggle("show");
         });
 
@@ -58,8 +63,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
         });
     } else {
-        console.error("Menu button or dropdown menu not found!");
+        console.error("❌ Menu button or dropdown menu not found!");
     }
+});
+
 
     // ===========================
     // Handle Map Layer Toggle
