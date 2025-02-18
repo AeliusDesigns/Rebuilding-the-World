@@ -1,12 +1,12 @@
 // ===========================
 // Import and Initialize Supabase
 // ===========================
-const { createClient } = supabase;
+const { createClient } = window.supabase;  // Fix Supabase import
 
 const supabaseUrl = "https://your-project-id.supabase.co"; // Replace with your actual Supabase URL
 const supabaseAnonKey = "your-anon-key"; // Replace with your actual anon key
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+window.supabaseClient = createClient(supabaseUrl, supabaseAnonKey); // Store in window
 
 // ===========================
 // Wait for DOM to Load
@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     await checkAuth();
-});
 
     // ===========================
     // Handle Dropdown Menu
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        const { data, error } = await supabase.storage
+        const { data, error } = await window.supabaseClient.storage
             .from("your-bucket-name") // Replace with your actual bucket name
             .upload(`uploads/${file.name}`, file, {
                 cacheControl: "3600",
@@ -132,5 +131,4 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log("Uploaded file data:", data);
         }
     }
-
-}); 
+});
