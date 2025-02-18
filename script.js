@@ -2,12 +2,14 @@
 // Initialize Supabase Client
 // ===========================
 
-const { createClient } = supabase;
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script Loaded!");
 
-const SUPABASE_URL = "https://utanijplulkywjzjvmty.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk";
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // Initialize Supabase Client
+    const supabase = window.supabase.createClient(
+        "https://utanijplulkywjzjvmty.supabase.co", 
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
+    )
 
 // ===========================
 // Check If User is Logged In
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Check if the user is logged in when the page loads
     await checkAuth();
-
+    
     const menuButton = document.getElementById("menu-button");
     const dropdownMenu = document.getElementById("dropdown-menu");
 
