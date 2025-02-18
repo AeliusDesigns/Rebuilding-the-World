@@ -21,6 +21,44 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Load Articles from Supabase
     // ===========================
     async function loadArticles() {
+        articlesContainer.classList.add("loading"); // Show loading indicator
+
+        try {
+            const { data, error } = await window.supabaseClient
+              .from("lore_articles")
+              .select("*");
+
+            if (error) throw error;
+
+            articlesContainer.innerHTML = ""; // Clear existing content
+
+            data.forEach(article => {
+                // Check if container still exists (in case of dynamic DOM changes)
+                if (!articlesContainer) return;
+
+                const articleElement = document.createElement("div");
+                articleElement.classList.add("lore-article");
+                articleElement.dataset.id = article.id;
+                articleElement.innerHTML = `
+                    <h2>${article.title}</h2>
+                    <p>${article.content}</p>
+                    <small>Created: ${new Date(article.created_at).toLocaleString()}</small>
+                `;
+                articlesContainer.appendChild(articleElement);
+            });
+
+            console.log("✅ Articles loaded:", data);
+        } catch (error) {
+            console.error("❌ Error loading articles from Supabase:", error);
+            alert("Error loading articles. Please try again later.");
+        } finally {
+            articlesContainer.classList.remove("loading"); // Hide loading indicator
+        }
+    }
+    // ===========================
+    // Load Articles from Supabase
+    // ===========================
+    async function loadArticles() {
         try {
             const { data, error } = await window.supabaseClient
                 .from("lore_articles")
