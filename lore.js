@@ -8,10 +8,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     console.log("✅ Supabase is available in lore.js.");
-});
-
-document.addEventListener("DOMContentLoaded", async function () {
-    console.log("Lore Script Loaded!");
 
     const addArticleBtn = document.getElementById("add-article-btn");
     const deleteArticleBtn = document.getElementById("delete-article-btn");
@@ -20,20 +16,25 @@ document.addEventListener("DOMContentLoaded", async function () {
     let user = null; // Store authenticated user
     let deleteMode = false;
 
-    // Get Supabase User Session
+    // Fix: Get Supabase User Session & Token
     async function checkAuth() {
-        const { data: { user }, error } = await supabase.auth.getUser();
-        if (error || !user) return console.error("User not authenticated.");
+        const { data: session, error } = await supabase.auth.getSession();
+        if (error || !session || !session.session) {
+            console.error("User not authenticated.");
+            return;
+        }
 
-        const authToken = await supabase.auth.getSession(); // Get token
-        localStorage.setItem("session", JSON.stringify({ user, token: authToken.session.access_token })); // Store session
+        const authToken = session.session.access_token; // ✅ Get token correctly
+        user = session.session.user; // ✅ Get user
+
+        localStorage.setItem("session", JSON.stringify({ user, token: authToken })); // Store session
 
         // Send token to backend to verify role
         const response = await fetch("http://localhost:5000/user-info", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${authToken.session.access_token}` // Send token
+                "Authorization": `Bearer ${authToken}` // ✅ Send token correctly
             },
             body: JSON.stringify({ user_id: user.id }),
         });
@@ -45,6 +46,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             deleteArticleBtn.style.display = "inline-block"; // Show Delete button
         }
     }
+
+    // Run authentication check on page load
+    await checkAuth();
+});
 
     // Load Articles from Supabase
     async function loadArticles() {
