@@ -1,3 +1,8 @@
+const supabase = window.supabase.createClient(
+    "https://utanijplulkywjzjvmty.supabase.co", 
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
+);
+
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("Lore Script Loaded!");
 
