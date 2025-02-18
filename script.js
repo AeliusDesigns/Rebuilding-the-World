@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     } else {
         console.error("❌ Menu button or dropdown menu not found!");
     }
-});
 
     // ===========================
     // Handle Map Layer Toggle
