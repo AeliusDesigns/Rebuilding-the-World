@@ -1,7 +1,7 @@
 // ===========================
 // Initialize Supabase Client (Ensure Supabase is available before using it)
 // ===========================
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     console.log("Script Loaded!");
 
     // Ensure Supabase is available
@@ -11,6 +11,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     console.log("✅ Supabase is available in script.js.");
+
+    // ===========================
+    // Check If User is Logged In
+    // ===========================
+    async function checkAuth() {
+        const { data: user, error } = await supabase.auth.getUser();
+        
+        if (error || !user) {
+            console.warn("User not authenticated.");
+            return null;
+        }
+
+        console.log("Authenticated user:", user);
+        return user;
+    }
+
+    // Check authentication when the page loads
+    await checkAuth();
 
     // ===========================
     // Handle Dropdown Menu
@@ -33,54 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error("Menu button or dropdown menu not found!");
     }
-});
-
-// ===========================
-// Check If User is Logged In
-// ===========================
-async function checkAuth() {
-    const { data: user, error } = await supabase.auth.getUser();
-    
-    if (error || !user) {
-        console.warn("User not authenticated.");
-        return null;
-    }
-
-    console.log("Authenticated user:", user);
-    return user;
-}
-
-// ===========================
-// Main Script (Runs After Page Loads)
-// ===========================
-document.addEventListener("DOMContentLoaded", async function () {
-    console.log("Script Loaded!");
-
-    // Check if the user is logged in when the page loads
-    await checkAuth();
-
-// ===========================
-// Handle Dropdown Menu
-// ===========================
-    const menuButton = document.getElementById("menu-button");
-    const dropdownMenu = document.getElementById("dropdown-menu");
-
-    if (menuButton && dropdownMenu) {
-        console.log("Menu button found!");
-        menuButton.addEventListener("click", function () {
-            dropdownMenu.classList.toggle("show");
-        });
-
-        // Close the menu when clicking outside of it
-        document.addEventListener("click", function (event) {
-            if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                dropdownMenu.classList.remove("show");
-            }
-        });
-    } else {
-        console.error("Menu button or dropdown menu not found!");
-    }
-});
 
     // ===========================
     // Handle Map Layer Toggle
@@ -126,30 +96,31 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
         });
     }
-});
 
-// ===========================
-// Upload File to Supabase
-// ===========================
-async function uploadFile(file) {
-    const user = await checkAuth();
-    if (!user) {
-        alert("You must be logged in to upload a file.");
-        return;
+    // ===========================
+    // Upload File to Supabase
+    // ===========================
+    async function uploadFile(file) {
+        const user = await checkAuth();
+        if (!user) {
+            alert("You must be logged in to upload a file.");
+            return;
+        }
+
+        const { data, error } = await supabase.storage
+            .from("your-bucket-name") // Replace with your actual bucket name
+            .upload(`uploads/${file.name}`, file, {
+                cacheControl: "3600",
+                upsert: false
+            });
+
+        if (error) {
+            console.error("Upload error:", error);
+            alert("Error uploading file.");
+        } else {
+            alert("File uploaded successfully!");
+            console.log("Uploaded file data:", data);
+        }
     }
 
-    const { data, error } = await supabase.storage
-        .from("your-bucket-name") // Replace with your actual bucket name
-        .upload(`uploads/${file.name}`, file, {
-            cacheControl: "3600",
-            upsert: false
-        });
-
-    if (error) {
-        console.error("Upload error:", error);
-        alert("Error uploading file.");
-    } else {
-        alert("File uploaded successfully!");
-        console.log("Uploaded file data:", data);
-    }
-}
+}); 
