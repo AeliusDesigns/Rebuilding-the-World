@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log("✅ Menu button found!");
 
             menuButton.addEventListener("click", function (event) {
-                event.stopPropagation(); // Prevent click from closing immediately
+                event.stopPropagation(); // Prevents click from closing immediately
                 dropdownMenu.classList.toggle("show");
 
                 console.log("🔽 Dropdown menu toggled:", dropdownMenu.classList.contains("show"));
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.error("❌ Menu button or dropdown menu not found!");
         }
     });
-
 
     // ===========================
     // Handle Map Layer Toggle
