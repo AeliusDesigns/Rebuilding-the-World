@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", async function() {
+            if (typeof supabase === "undefined" || !supabase.createClient) {
+                console.error("❌ Supabase library failed to load.");
+                return;
+            }
+            
             window.supabase = supabase.createClient(
                 "https://utanijplulkywjzjvmty.supabase.co",
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
             );
-            console.log("✅ Supabase initialized");
+            console.log("✅ Supabase initialized successfully");
         });
     </script>
-    <script src="script.js"></script>
-    <script src="lore.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="lore.js"></script>
 </head>
 <body>
     <header>
@@ -55,11 +60,13 @@
     
             menuButton.addEventListener("click", function() {
                 dropdownMenu.classList.toggle("show");
+                menuButton.classList.toggle("active");
             });
     
             document.addEventListener("click", function(event) {
                 if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
                     dropdownMenu.classList.remove("show");
+                    menuButton.classList.remove("active");
                 }
             });
         });
@@ -80,6 +87,12 @@
     
         #dropdown-menu.show {
             display: block !important;
+        }
+    
+        #menu-button.active {
+            background: #444;
+            border-color: white;
+            transform: scale(1.1);
         }
     </style>
 </body>
