@@ -1,3 +1,5 @@
+console.log("✅ script.js is running!");
+
 // ===========================
 // Import and Initialize Supabase
 // ===========================
