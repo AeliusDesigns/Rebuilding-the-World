@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             dropdownMenu.classList.toggle("show");
             menuButton.classList.toggle("active");
+            
+            console.log("🔽 Dropdown menu toggled:", dropdownMenu.classList.contains("show"));
 
             const isExpanded = dropdownMenu.classList.contains("show");
             menuButton.setAttribute("aria-expanded", isExpanded);
