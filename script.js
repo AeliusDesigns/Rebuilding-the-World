@@ -47,18 +47,23 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (menuButton && dropdownMenu) {
         console.log("✅ Menu button and dropdown menu found!");
 
-        menuButton.addEventListener("click", function (event) {
-            event.stopPropagation(); // Prevents click from closing immediately
-            console.log("📜 Menu button clicked");
+      menuButton.addEventListener("click", function (event) {
+    event.stopPropagation();
 
-            dropdownMenu.classList.toggle("show");
-            console.log("🔽 Dropdown menu class list after toggle:", dropdownMenu.classList);
+    dropdownMenu.classList.toggle("show");
+    menuButton.classList.toggle("active");
 
-            menuButton.classList.toggle("active");
-            const expanded = menuButton.getAttribute("aria-expanded") === "true" || false; // This line is the problem
-            menuButton.setAttribute("aria-expanded", !expanded);
-            console.log("🔽 aria-expanded set to:", !expanded);
-        });
+    const isExpanded = dropdownMenu.classList.contains("show"); // More reliable way to check
+    menuButton.setAttribute("aria-expanded", isExpanded); // Set aria-expanded directly
+});
+
+document.addEventListener("click", function (event) {
+    if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove("show");
+        menuButton.classList.remove("active");
+        menuButton.setAttribute("aria-expanded", "false");
+    }
+});
 
         document.addEventListener("click", function (event) {
             if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
