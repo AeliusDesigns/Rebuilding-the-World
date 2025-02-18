@@ -108,7 +108,9 @@ a:hover {
 }
 
 #dropdown-menu.show {
-    display: block !important;
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* =========================== */
