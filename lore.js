@@ -16,6 +16,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // ===========================
+    // User Authentication Check
+    // ===========================
+    async function checkAuth() {
+        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
+
+        if (error || !user) {
+            console.warn("❌ User not authenticated.");
+            return null;
+        }
+
+        console.log("✅ Authenticated user:", user);
+        return user;
+    }
+    
+    // ===========================
     // Fetch and Display Articles
     // ===========================
     async function fetchArticles() {
