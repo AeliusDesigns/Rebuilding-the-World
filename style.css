@@ -117,27 +117,96 @@ a:hover {
 /* Landing Page Styling */
 /* =========================== */
 
-body {
-    margin: 0;
-    padding: 0;
+body.landing-page {
+    text-align: center;
+    background-color: #121212;
+    color: white;
 }
 
-#welcome, #updates {
-    max-width: 800px;
-    margin: 100px auto 40px auto;
+/* Hero Section */
+#hero {
+    background: linear-gradient(90deg, #222, #444);
+    padding: 80px 20px;
+    margin: 0 auto;
     text-align: center;
-    padding: 30px;
-    border-bottom: 1px solid #333;
-    background: #6e6d6d;
-    box-shadow: 2px 2px 5px rgba(224, 191, 4, 0.8);
     border-radius: 10px;
-    color: white;
+    box-shadow: 0px 0px 10px rgba(224, 191, 4, 0.8);
+    max-width: 900px;
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+}
+
+#hero span {
+    color: #e0bf04; /* Gold */
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+.cta-button {
+    background: #e0bf04;
+    color: black;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
     transition: all 0.3s ease-in-out;
 }
 
-#welcome:hover, #updates:hover {
+.cta-button:hover {
+    background: #c9a000;
+    transform: scale(1.1);
+}
+
+/* Feature Section */
+#features {
+    margin: 50px auto;
+    max-width: 900px;
+}
+
+.feature-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
+    box-shadow: 0px 0px 10px rgba(224, 191, 4, 0.8);
+}
+
+.feature-card h3 {
+    color: #e0bf04;
+    font-size: 1.5rem;
+}
+
+/* Updates Section */
+#updates {
+    margin: 50px auto;
+    max-width: 900px;
+}
+
+#updates-container {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
 /* =========================== */
