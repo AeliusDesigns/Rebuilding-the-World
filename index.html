@@ -5,30 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", async function() {
-            if (typeof supabase === "undefined" || !supabase.createClient) {
-                console.error("❌ Supabase library failed to load.");
-                return;
-            }
-
-            window.supabase = supabase.createClient(
-                "https://utanijplulkywjzjvmty.supabase.co",
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
-            );
-            console.log("✅ Supabase initialized successfully");
-        });
-    </script>
     <script defer src="script.js"></script>
-    <script defer src="lore.js"></script>
 </head>
-<body>
+<body class="landing-page">
+
+    <!-- Header -->
     <header>
         <h1>Rebuilding the World</h1>
-        <button id="menu-button" aria-expanded="false">☰</button>
+        <button id="menu-button">☰</button>
     </header>
 
+    <!-- Dropdown Menu -->
     <nav id="dropdown-menu">
         <ul>
             <li><a href="map.html">World Map</a></li>
@@ -37,18 +24,41 @@
         </ul>
     </nav>
 
-    <main>
-        <section id="welcome">
-            <h2>Welcome to Rebuilding the World</h2>
-            <p>Here, you can describe your game and what it's about.</p>
-        </section>
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Welcome to <span>Rebuilding the World</span></h1>
+        <p>A dynamic world where nations rise and fall. Shape the future, control your nation, and explore history in the making.</p>
+        <a href="https://discord.gg/pufcfTCe9T" class="cta-button">Join the Community</a>
+    </section>
 
-        <section id="updates">
-            <h2>Recent Updates</h2>
-            <p>List recent changes, additions, and news about the game here.</p>
-        </section>
-    </main>
+    <!-- Feature Highlights -->
+    <section id="features">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🌍 Explore the World</h3>
+                <p>Navigate an expansive world map and discover new territories.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🏛 Build Your Nation</h3>
+                <p>Form alliances, wage wars, and manage your people.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📜 Uncover the Lore</h3>
+                <p>Dive into a rich history shaped by players and events.</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- Recent Updates -->
+    <section id="updates">
+        <h2>Latest Updates</h2>
+        <div id="updates-container">
+            <p>Loading recent updates...</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <a href="https://discord.gg/pufcfTCe9T" target="_blank" id="discord-button">Join Our Discord</a>
     </footer>
