@@ -127,7 +127,7 @@ body.landing-page {
 #hero {
     background: linear-gradient(90deg, #222, #444);
     padding: 80px 20px;
-    margin: 0 auto;
+    margin: 40px auto;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(224, 191, 4, 0.8);
@@ -201,11 +201,12 @@ body.landing-page {
     max-width: 900px;
 }
 
-#updates-container {
+.update-card {
     background: #222;
     padding: 20px;
     border-radius: 10px;
     text-align: left;
+    margin-bottom: 15px;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
