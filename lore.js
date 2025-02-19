@@ -1,147 +1,148 @@
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("📜 lore.js Loaded!");
 
-    // Ensure Supabase is available
-    if (!window.supabaseClient) {
-        console.error("❌ Supabase is not initialized in lore.js. Check supabase.js!");
+    const articlesContainer = document.getElementById("articles");
+    const createArticleBtn = document.getElementById("create-article-btn");
+    const deleteArticleBtn = document.getElementById("delete-article-btn");
+    const modalOverlay = document.getElementById("modal-overlay");
+    const articleModal = document.getElementById("article-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalContent = document.getElementById("modal-content");
+    const closeModal = document.querySelector(".close-modal");
+
+    if (!articlesContainer || !createArticleBtn || !deleteArticleBtn) {
+        console.error("❌ One or more required elements not found in lore.js.");
         return;
     }
 
-    console.log("✅ Supabase is available in lore.js.");
-
-    // UI Elements
-    const addArticleBtn = document.getElementById("add-article-btn");
-    const deleteArticleBtn = document.getElementById("delete-article-btn");
-    const articlesContainer = document.getElementById("articles");
-
-    let user = null; // Store authenticated user
-    let deleteMode = false;
-
     // ===========================
-    // Load Articles from Supabase
+    // Fetch and Display Articles
     // ===========================
-    async function loadArticles() {
-        try {
-            const { data, error } = await window.supabaseClient
-                .from("lore_articles")
-                .select("*");
+    async function fetchArticles() {
+        console.log("📥 Fetching articles from database...");
 
-            if (error) throw error;
+        const { data, error } = await window.supabaseClient
+            .from("articles")
+            .select("*")
+            .order("created_at", { ascending: false });
 
-            articlesContainer.innerHTML = ""; // Clear existing content
+        if (error) {
+            console.error("❌ Error fetching articles:", error);
+            return;
+        }
 
-            data.forEach(article => {
-                const articleElement = document.createElement("div");
-                articleElement.classList.add("lore-article");
-                articleElement.dataset.id = article.id;
-                articleElement.innerHTML = `
-                    <h2>${article.title}</h2>
-                    <p>${article.content}</p>
-                    <small>Created: ${new Date(article.created_at).toLocaleString()}</small>
-                `;
-                articlesContainer.appendChild(articleElement);
+        articlesContainer.innerHTML = ""; // Clear current articles
+
+        data.forEach((article) => {
+            const articleCard = document.createElement("div");
+            articleCard.classList.add("lore-article");
+            articleCard.innerHTML = `
+                <h3>${article.title}</h3>
+                <p class="caption">${article.caption || "No caption provided."}</p>
+                <p class="timestamp">${new Date(article.created_at).toLocaleString()}</p>
+                <button class="view-article-btn" data-id="${article.id}">View</button>
+            `;
+            articlesContainer.appendChild(articleCard);
+        });
+
+        console.log("✅ Articles loaded successfully!");
+
+        // Add event listeners to "View" buttons
+        document.querySelectorAll(".view-article-btn").forEach((btn) => {
+            btn.addEventListener("click", function () {
+                const articleId = this.getAttribute("data-id");
+                openArticle(articleId);
             });
+        });
+    }
 
-            console.log("✅ Articles loaded:", data);
-        } catch (error) {
-            console.error("❌ Error loading articles:", error);
+    fetchArticles(); // Load articles when page loads
+
+    // ===========================
+    // Open Article Modal
+    // ===========================
+    async function openArticle(articleId) {
+        console.log(`📖 Opening article with ID: ${articleId}`);
+
+        const { data, error } = await window.supabaseClient
+            .from("articles")
+            .select("*")
+            .eq("id", articleId)
+            .single();
+
+        if (error) {
+            console.error("❌ Error fetching article:", error);
+            return;
         }
+
+        modalTitle.textContent = data.title;
+        modalContent.textContent = data.content; // Assuming "content" column holds the full text
+
+        articleModal.style.display = "block";
+        modalOverlay.style.display = "block";
     }
 
     // ===========================
-    // Create an Article (Supabase)
+    // Close Modal
     // ===========================
-    if (addArticleBtn) {
-    addArticleBtn.addEventListener("click", async function () {
-        // Get current user from Supabase
-        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
-        
-        if (error || !user) {
-            alert("Unauthorized: Please log in.");
-            return;
-        }
-
-        // Check if user is an admin from the database
-        const { data: userData, error: roleError } = await window.supabaseClient
-            .from("users") // Replace "users" with your actual user role table
-            .select("role")
-            .eq("id", user.id)
-            .single();
-
-        if (roleError || !userData || userData.role !== "admin") {
-            alert("Unauthorized: You do not have admin permissions.");
-            return;
-        }
-
-        const title = prompt("Enter the article title:");
-        const content = prompt("Enter the article content:");
-
-        if (title && content) {
-            try {
-                const { data, error } = await window.supabaseClient
-                    .from("lore_articles")
-                    .insert([{ title, content }]);
-
-                if (error) throw error;
-
-                alert("Article added successfully!");
-                loadArticles(); // Reload articles after inserting
-            } catch (error) {
-                console.error("Error creating article:", error);
-                alert("Error adding article.");
-            }
-        }
+    closeModal.addEventListener("click", function () {
+        articleModal.style.display = "none";
+        modalOverlay.style.display = "none";
     });
-}
+
+    modalOverlay.addEventListener("click", function () {
+        articleModal.style.display = "none";
+        modalOverlay.style.display = "none";
+    });
 
     // ===========================
-    // Delete an Article (Supabase)
+    // Create New Article
     // ===========================
-    async function deleteArticle(id) {
-        // Get the currently logged-in user
-        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
+    createArticleBtn.addEventListener("click", async function () {
+        console.log("📝 Creating a new article...");
 
-        if (error || !user) {
-            alert("Unauthorized: Please log in.");
+        const title = prompt("Enter article title:");
+        if (!title) return alert("Title is required.");
+
+        const caption = prompt("Enter article caption:");
+        const content = prompt("Enter article content:");
+        if (!content) return alert("Content is required.");
+
+        const { error } = await window.supabaseClient
+            .from("articles")
+            .insert([{ title, caption, content }]);
+
+        if (error) {
+            console.error("❌ Error creating article:", error);
+            alert("Failed to create article.");
             return;
         }
 
-        // Check if user is an admin
-        const { data: userData, error: roleError } = await window.supabaseClient
-            .from("users") // Replace "users" with your actual user role table
-            .select("role")
-            .eq("id", user.id)
-            .single();
+        alert("✅ Article created successfully!");
+        fetchArticles(); // Refresh articles
+    });
 
-        if (roleError || !userData || userData.role !== "admin") {
-            alert("Unauthorized: You do not have admin permissions.");
+    // ===========================
+    // Delete Articles
+    // ===========================
+    deleteArticleBtn.addEventListener("click", async function () {
+        console.log("🗑 Deleting an article...");
+
+        const articleId = prompt("Enter the ID of the article to delete:");
+        if (!articleId) return alert("Article ID is required.");
+
+        const { error } = await window.supabaseClient
+            .from("articles")
+            .delete()
+            .eq("id", articleId);
+
+        if (error) {
+            console.error("❌ Error deleting article:", error);
+            alert("Failed to delete article.");
             return;
         }
 
-        if (!confirm("Are you sure you want to delete this article?")) return;
-
-        try {
-            const { error } = await window.supabaseClient
-                .from("lore_articles")
-                .delete()
-                .eq("id", id);
-
-            if (error) throw error;
-
-            alert("Article deleted successfully!");
-            loadArticles(); // Reload articles after deleting
-        } catch (error) {
-            console.error("Error deleting article:", error);
-            alert("Error deleting article.");
-        }
-    }
-
-    // ===========================
-    // Initialize Page
-    // ===========================
-    async function initLorePage() {
-        await loadArticles();
-    }
-
-    initLorePage();
+        alert("✅ Article deleted successfully!");
+        fetchArticles(); // Refresh articles
+    });
 });
