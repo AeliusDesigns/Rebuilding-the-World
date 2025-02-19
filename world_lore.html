@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Lore - Rebuilding the World</title>
-    <link rel="stylesheet" href="style.css"> <!-- Now using only style.css -->
+    <link rel="stylesheet" href="style.css"> 
 
     <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
-    <!-- Supabase Initialization (Make sure this runs before script.js and lore.js) -->
+    <!-- Supabase Initialization -->
     <script src="supabase.js"></script>
 
     <!-- Main Scripts -->
     <script defer src="script.js"></script>
-    <script defer src="lore.js"></script> <!-- Separate script for managing articles -->
+    <script defer src="lore.js"></script> 
 </head>
 <body class="lore-page">
 
-        <!-- Header -->
+    <!-- Header -->
     <header>
         <h1>Rebuilding the World</h1>
         <button id="menu-button">☰</button>
@@ -39,14 +39,14 @@
         <p>Welcome to the Rebuilding the World Lore wiki. Below you will find articles detailing the history, factions, and important events of the world.</p>
 
         <!-- Article Controls -->
-    <div id="article-controls">
-        <button id="create-article-btn">+ Create Article</button>
-        <button id="delete-article-btn">🗑 Delete Articles</button>
-    </div>
+        <div id="article-controls">
+            <button id="create-article-btn">+ Create Article</button>
+            <button id="delete-article-btn">🗑 Delete Articles</button>
+        </div>
 
         <!-- Lore Articles Section -->
         <section id="articles">
-
+            
         </section>
     </main>
 
@@ -57,19 +57,17 @@
         </a>
     </footer>
 
-    <script defer src="lore.js"></script> <!-- Separate script for managing articles -->
+    <!-- Article Modal -->
+    <div id="modal-overlay"></div>
 
-    <!-- Modal Overlay (Darkens Page When Open) -->
-<div id="modal-overlay"></div>
-
-<!-- Article Modal -->
-<div id="article-modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 id="modal-title"></h3>
-        <p id="modal-content"></p>
+    <div id="article-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-caption"></p>
+            <p id="modal-content"></p>
+        </div>
     </div>
-</div>
-    
+
 </body>
 </html>
