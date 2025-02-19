@@ -308,7 +308,8 @@ body.landing-page {
 #getting-started {
     text-align: center;
     padding: 50px 20px;
-    margin-bottom: 180px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
 }
 
 /* Title Styling */
