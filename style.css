@@ -217,23 +217,28 @@ body.landing-page {
 #available-races {
     text-align: center;
     padding: 50px 20px;
+    margin-bottom: 40px;
 }
 
 #available-races h2 {
     font-size: 28px;
     color: #e0bf04; /* Gold accent */
     margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
+/* Race Grid Styling */
 .race-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 20px;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Individual Race Cards */
 .race-card {
     background: #222;
     border: 2px solid #888;
@@ -243,6 +248,11 @@ body.landing-page {
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
+    width: 150px; /* Ensures uniform size */
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -251,7 +261,7 @@ body.landing-page {
     background: #444;
     border-color: #e0bf04; /* Gold glow */
     transform: translateY(-5px);
-    box-shadow: 0px 0px 10px rgba(224, 191, 4, 0.8);
+    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
 }
 
 /* =========================== */
@@ -261,37 +271,42 @@ body.landing-page {
 #getting-started {
     text-align: center;
     padding: 50px 20px;
+    margin-bottom: 40px;
 }
 
 #getting-started h2 {
     font-size: 28px;
     color: #e0bf04;
     margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
+/* Getting Started Grid */
 .getting-started-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Individual Step Cards */
 .step-card {
     background: #222;
     border: 2px solid #888;
     color: white;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
     border-radius: 10px;
     position: relative;
     transition: all 0.3s ease-in-out;
 }
 
+/* Step Number Styling */
 .step-circle {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     background: #e0bf04;
     color: black;
     font-weight: bold;
@@ -300,14 +315,16 @@ body.landing-page {
     justify-content: center;
     align-items: center;
     margin: 0 auto 10px auto;
-    font-size: 20px;
+    font-size: 22px;
+    border: 2px solid black;
 }
 
+/* Step Card Hover Effect */
 .step-card:hover {
     background: #444;
     border-color: #e0bf04;
     transform: translateY(-5px);
-    box-shadow: 0px 0px 10px rgba(224, 191, 4, 0.8);
+    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
 }
 
 /* =========================== */
