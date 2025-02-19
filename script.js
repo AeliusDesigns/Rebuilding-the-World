@@ -3,64 +3,14 @@ console.log("✅ script.js is running!");
 // ===========================
 // Ensure Elements Exist
 // ===========================
-const menuButton = document.getElementById("menu-button");
-const dropdownMenu = document.getElementById("dropdown-menu");
-
-if (menuButton && dropdownMenu) {
-    console.log("✅ Menu button & dropdown menu found!");
-} else {
-    console.error("❌ Menu button or dropdown menu NOT found on this page!");
-}
-
-// ===========================
-// Import and Initialize Supabase
-// ===========================
-const createClient = window.supabase?.createClient;
-
-if (!createClient) {
-    console.error("❌ Supabase library failed to load.");
-} else {
-    console.log("✅ Supabase is available.");
-} 
-
-const supabaseUrl = "https://utanijplulkywjzjvmty.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk";
-
-window.supabaseClient = createClient(supabaseUrl, supabaseAnonKey); // Store in window
-
-// ===========================
-// Wait for DOM to Load (Single Execution Flow)
-// ===========================
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("📜 script.js Loaded!");
 
-    // Ensure Supabase is available
-    if (!window.supabaseClient) {
-        console.error("❌ Supabase is not initialized. Check supabase.js!");
-        return;
-    }
+    const menuButton = document.getElementById("menu-button");
+    const dropdownMenu = document.getElementById("dropdown-menu");
 
-    console.log("✅ Supabase is available in script.js.");
-
-    async function checkAuth() {
-        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
-
-        if (error || !user) {
-            console.warn("❌ User not authenticated.");
-            return null;
-        }
-
-        console.log("✅ Authenticated user:", user);
-        return user; // Return user object for role-based checking
-    }
-
-    await checkAuth();
-
-    // ===========================
-    // Handle Dropdown Menu (Refactored)
-    // ===========================
     if (menuButton && dropdownMenu) {
-        console.log("📜 Initializing dropdown menu...");
+        console.log("✅ Menu button & dropdown menu found!");
 
         menuButton.addEventListener("click", function (event) {
             event.stopPropagation();
@@ -81,7 +31,42 @@ document.addEventListener("DOMContentLoaded", async function () {
                 console.log("❌ Dropdown menu closed");
             }
         });
+    } else {
+        console.error("❌ Menu button or dropdown menu NOT found on this page!");
     }
+
+    // ===========================
+    // Import and Initialize Supabase
+    // ===========================
+    if (!window.supabase) {
+        console.error("❌ Supabase library not found. Make sure it's included in the HTML.");
+        return;
+    }
+
+    console.log("✅ Supabase is available.");
+    const { createClient } = window.supabase;
+
+    const supabaseUrl = "https://utanijplulkywjzjvmty.supabase.co";
+    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk";
+
+    window.supabaseClient = createClient(supabaseUrl, supabaseAnonKey); // Store in window
+
+    // ===========================
+    // Authentication Helper
+    // ===========================
+    async function checkAuth() {
+        const { data: { user }, error } = await window.supabaseClient.auth.getUser();
+
+        if (error || !user) {
+            console.warn("❌ User not authenticated.");
+            return null;
+        }
+
+        console.log("✅ Authenticated user:", user);
+        return user; // Return user object for role-based checking
+    }
+
+    await checkAuth();
 
     // ===========================
     // Handle Map Layer Toggle (If on Map Page)
