@@ -332,16 +332,19 @@ body.landing-page {
 .step-row {
     display: flex;
     justify-content: center;
-    gap: 30px; 
-    width: auto; 
-    max-width: 750px; 
+    gap: 30px;
+    max-width: 750px;
+    margin: 0 auto; 
 }
 
 /* Second row should also be centered */
 .step-row.centered {
+    display: flex;
     justify-content: center;
-    gap: 30px; 
-    padding-top: 40px; 
+    gap: 30px;
+    max-width: 500px;
+    margin: 0 auto; 
+    padding-top: 30px;
 }
 
 /* Individual Step Cards */
@@ -357,6 +360,13 @@ body.landing-page {
     transition: all 0.3s ease-in-out;
     font-weight: bold; 
     font-size: 1.1rem;
+}
+
+/* Ensure captions are smaller and readable */
+.step-caption {
+    font-weight: normal;
+    font-size: 0.9rem;
+    opacity: 0.8; 
 }
 
 /* Step Number Styling */
