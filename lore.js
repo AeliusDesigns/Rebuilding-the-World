@@ -114,7 +114,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Create New Article
     // ===========================
     createArticleBtn.addEventListener("click", async function () {
-        console.log("📝 Creating a new article...");
+        console.log("📝 Attempting to create an article...");
+
+        const user = await checkAuth();
+        if (!user) {
+            alert("❌ You must be logged in to create an article.");
+            return;
+        }
 
         const title = prompt("Enter article title:");
         if (!title) return alert("Title is required.");
@@ -124,40 +130,65 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!content) return alert("Content is required.");
 
         const { error } = await window.supabaseClient
-            .from("lore_articles") // ✅ Fixed Table Name
-            .insert([{ title, caption, content }]);
+            .from("lore_articles")
+            .insert([{ title, caption, content, user_id: user.id }]); // Store user ID
 
         if (error) {
             console.error("❌ Error creating article:", error);
             alert("Failed to create article.");
             return;
         }
-
+    
         alert("✅ Article created successfully!");
         fetchArticles(); // Refresh articles
     });
+
 
     // ===========================
     // Delete Articles
     // ===========================
     deleteArticleBtn.addEventListener("click", async function () {
-        console.log("🗑 Deleting an article...");
+    console.log("🗑 Attempting to delete an article...");
 
-        const articleId = prompt("Enter the ID of the article to delete:");
-        if (!articleId) return alert("Article ID is required.");
+    const user = await checkAuth();
+    if (!user) {
+        alert("❌ You must be logged in to delete an article.");
+        return;
+    }
 
-        const { error } = await window.supabaseClient
-            .from("lore_articles") // ✅ Fixed Table Name
-            .delete()
-            .eq("id", articleId);
+    const articleId = prompt("Enter the ID of the article to delete:");
+    if (!articleId) return alert("Article ID is required.");
 
-        if (error) {
-            console.error("❌ Error deleting article:", error);
-            alert("Failed to delete article.");
-            return;
-        }
+    const { data: article, error: fetchError } = await window.supabaseClient
+        .from("lore_articles")
+        .select("user_id")
+        .eq("id", articleId)
+        .single();
 
-        alert("✅ Article deleted successfully!");
-        fetchArticles(); // Refresh articles
-    });
+    if (fetchError || !article) {
+        console.error("❌ Error fetching article:", fetchError);
+        alert("Article not found or an error occurred.");
+        return;
+    }
+
+    // Ensure only the article creator can delete
+    if (article.user_id !== user.id) {
+        alert("❌ You are not authorized to delete this article.");
+        return;
+    }
+
+    const { error } = await window.supabaseClient
+        .from("lore_articles")
+        .delete()
+        .eq("id", articleId);
+
+    if (error) {
+        console.error("❌ Error deleting article:", error);
+        alert("Failed to delete article.");
+        return;
+    }
+
+    alert("✅ Article deleted successfully!");
+    fetchArticles(); // Refresh articles
 });
+
