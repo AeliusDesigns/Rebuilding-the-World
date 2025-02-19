@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rebuilding the World</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    
+    <!-- Ensure Supabase is initialized before loading script.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof supabase === "undefined" || !supabase.createClient) {
+                console.error("❌ Supabase library failed to load.");
+                return;
+            }
+
+            window.supabaseClient = supabase.createClient(
+                "https://utanijplulkywjzjvmty.supabase.co",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk"
+            );
+            console.log("✅ Supabase initialized successfully");
+        });
+    </script>
+
+    <!-- Main Script -->
     <script defer src="script.js"></script>
 </head>
 <body class="landing-page">
