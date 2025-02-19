@@ -7,9 +7,9 @@ const menuButton = document.getElementById("menu-button");
 const dropdownMenu = document.getElementById("dropdown-menu");
 
 // ===========================
-// Initialize Supabase
+// Import and Initialize Supabase
 // ===========================
-const createClient = window.supabase?.createClient;
+const { createClient } = supabase;  // ✅ FIXED: Correct Supabase import
 
 if (!createClient) {
     console.error("❌ Supabase library failed to load.");
@@ -18,7 +18,7 @@ if (!createClient) {
 }
 
 const supabaseUrl = "https://utanijplulkywjzjvmty.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV0YW5panBsdWxreXdqemp2bXR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk4MjM1OTgsImV4cCI6MjA1NTM5OTU5OH0.PeJW5YAOHuaoF_prggpAqC1Sz4b5ufnpW1_Uq7U1cWk";
 
 window.supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
 
