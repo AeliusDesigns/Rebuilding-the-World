@@ -222,7 +222,7 @@ body.landing-page {
 
 #available-races h2 {
     font-size: 28px;
-    color: #e0bf04; /* Gold accent */
+    color: #ffffff; 
     margin-bottom: 20px;
     text-transform: uppercase;
 }
@@ -290,7 +290,7 @@ body.landing-page {
 
 #getting-started h2 {
     font-size: 28px;
-    color: #e0bf04;
+    color: #ffffff;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
