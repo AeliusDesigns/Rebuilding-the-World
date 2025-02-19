@@ -358,6 +358,18 @@ body.landing-page {
     font-size: 1.1rem; 
 }
 
+/* Make the main step text bold */
+.step-text {
+    font-weight: bold;
+    font-size: 1.1rem;  
+}
+
+/* Ensure captions are smaller and readable */
+.step-caption {
+    font-weight: normal;
+    font-size: 0.9rem;
+    opacity: 0.8; 
+}
 
 /* Step Number Styling */
 .step-circle {
