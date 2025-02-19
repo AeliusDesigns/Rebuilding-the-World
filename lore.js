@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("📥 Fetching articles from database...");
 
         const { data, error } = await window.supabaseClient
-            .from("lore_articles")
+            .from("lore_articles") // ✅ Correct Table Name
             .select("*")
             .order("created_at", { ascending: false });
 
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log(`📖 Opening article with ID: ${articleId}`);
 
         const { data, error } = await window.supabaseClient
-            .from("articles")
+            .from("lore_articles") // ✅ Fixed Table Name
             .select("*")
             .eq("id", articleId)
             .single();
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         modalTitle.textContent = data.title;
-        modalContent.textContent = data.content; // Assuming "content" column holds the full text
+        modalContent.textContent = data.content || "No content available."; // ✅ Prevent Null
 
         articleModal.style.display = "block";
         modalOverlay.style.display = "block";
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!content) return alert("Content is required.");
 
         const { error } = await window.supabaseClient
-            .from("articles")
+            .from("lore_articles") // ✅ Fixed Table Name
             .insert([{ title, caption, content }]);
 
         if (error) {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!articleId) return alert("Article ID is required.");
 
         const { error } = await window.supabaseClient
-            .from("articles")
+            .from("lore_articles") // ✅ Fixed Table Name
             .delete()
             .eq("id", articleId);
 
