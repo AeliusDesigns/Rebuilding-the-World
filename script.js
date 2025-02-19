@@ -90,75 +90,73 @@ document.addEventListener("DOMContentLoaded", async function () {
     }, 500); // Delay by 500ms to ensure elements are loaded
 });
 
+// ===========================
+// Handle Map Layer Toggle
+// ===========================
+if (document.body.classList.contains("map-page")) {
+    console.log("Map Page Detected!");
 
-    // ===========================
-    // Handle Map Layer Toggle
-    // ===========================
-    if (document.body.classList.contains("map-page")) {
-        console.log("Map Page Detected!");
+    const buttons = document.querySelectorAll(".map-toggle");
+    const images = {
+        abovegroundBorders: document.getElementById("abovegroundBordersImg"),
+        abovegroundNames: document.getElementById("abovegroundNamesImg"),
+        belowgroundBorders: document.getElementById("belowgroundBordersImg"),
+        belowgroundNames: document.getElementById("belowgroundNamesImg"),
+    };
 
-        const buttons = document.querySelectorAll(".map-toggle");
-        const images = {
-            abovegroundBorders: document.getElementById("abovegroundBordersImg"),
-            abovegroundNames: document.getElementById("abovegroundNamesImg"),
-            belowgroundBorders: document.getElementById("belowgroundBordersImg"),
-            belowgroundNames: document.getElementById("belowgroundNamesImg"),
-        };
+    function selectLayer(selectedLayer) {
+        // Remove "active" class from all buttons
+        buttons.forEach(btn => btn.classList.remove("active"));
 
-        function selectLayer(selectedLayer) {
-            // Remove "active" class from all buttons
-            buttons.forEach(btn => btn.classList.remove("active"));
-
-            // Hide all images
-            for (let key in images) {
-                if (images[key]) {
-                    images[key].style.display = "none";
-                }
-            }
-
-            // Activate the clicked button & show corresponding map layer
-            const selectedButton = document.querySelector(`.map-toggle[data-layer="${selectedLayer}"]`);
-            if (selectedButton) {
-                selectedButton.classList.add("active");
-            }
-
-            if (images[selectedLayer]) {
-                images[selectedLayer].style.display = "inline-block";
+        // Hide all images
+        for (let key in images) {
+            if (images[key]) {
+                images[key].style.display = "none";
             }
         }
 
-        // Add event listeners to buttons
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const layer = this.getAttribute("data-layer");
-                selectLayer(layer);
-            });
+        // Activate the clicked button & show corresponding map layer
+        const selectedButton = document.querySelector(`.map-toggle[data-layer="${selectedLayer}"]`);
+        if (selectedButton) {
+            selectedButton.classList.add("active");
+        }
+
+        if (images[selectedLayer]) {
+            images[selectedLayer].style.display = "inline-block";
+        }
+    }
+
+    // Add event listeners to buttons
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            const layer = this.getAttribute("data-layer");
+            selectLayer(layer);
         });
+    });
+}
+
+// ===========================
+// Upload File to Supabase
+// ===========================
+async function uploadFile(file) {
+    const user = await checkAuth();
+    if (!user) {
+        alert("You must be logged in to upload a file.");
+        return;
     }
 
-    // ===========================
-    // Upload File to Supabase
-    // ===========================
-    async function uploadFile(file) {
-        const user = await checkAuth();
-        if (!user) {
-            alert("You must be logged in to upload a file.");
-            return;
-        }
+    const { data, error } = await window.supabaseClient.storage
+        .from("your-bucket-name") // Replace with your actual bucket name
+        .upload(`uploads/${file.name}`, file, {
+            cacheControl: "3600",
+            upsert: false
+        });
 
-        const { data, error } = await window.supabaseClient.storage
-            .from("your-bucket-name") // Replace with your actual bucket name
-            .upload(`uploads/${file.name}`, file, {
-                cacheControl: "3600",
-                upsert: false
-            });
-
-        if (error) {
-            console.error("Upload error:", error);
-            alert("Error uploading file.");
-        } else {
-            alert("File uploaded successfully!");
-            console.log("Uploaded file data:", data);
-        }
+    if (error) {
+        console.error("Upload error:", error);
+        alert("Error uploading file.");
+    } else {
+        alert("File uploaded successfully!");
+        console.log("Uploaded file data:", data);
     }
-});
+}
