@@ -123,6 +123,19 @@ body.landing-page {
     color: white;
 }
 
+/* General Section Title Styling */
+#hero h1,
+#features h2,
+#updates h2,
+#available-races h2,
+#getting-started h2 {
+    font-size: 28px; 
+    color: #ffffff;  
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center; 
+}
+
 /* Hero Section */
 #hero {
     background: linear-gradient(90deg, #222, #444);
@@ -249,6 +262,15 @@ body.landing-page {
 /* Single centered race in the second row */
 .race-row.centered {
     justify-content: center;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Force all race cards to be the same size */
+.race-card {
+    flex: 0 0 180px;
 }
 
 /* Individual Race Cards */
