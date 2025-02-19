@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("📥 Fetching articles from database...");
 
         const { data, error } = await window.supabaseClient
-            .from("articles")
+            .from("lore_articles")
             .select("*")
             .order("created_at", { ascending: false });
 
