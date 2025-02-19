@@ -227,21 +227,22 @@ body.landing-page {
     text-transform: uppercase;
 }
 
-/* Race Grid (Manually Structured) */
+/* Race Grid (Manually Structured for Horizontal Rows) */
 .race-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-/* Top row with 5 races */
+/* Top row with 5 races (evenly spaced) */
 .race-row {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
 }
 
 /* Single centered race in the second row */
@@ -259,8 +260,8 @@ body.landing-page {
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
-    height: 80px;
     width: 160px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -293,26 +294,28 @@ body.landing-page {
     text-transform: uppercase;
 }
 
-/* Getting Started Grid (Manually Structured) */
+/* Getting Started Grid (Manually Structured for Horizontal Rows) */
 .getting-started-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 /* Top row with 3 steps */
 .step-row {
     display: flex;
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
 }
 
 /* Second row with 2 centered steps */
 .step-row.centered {
     justify-content: center;
+    gap: 20px;
 }
 
 /* Individual Step Cards */
