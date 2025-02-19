@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const articleCard = document.createElement("div");
             articleCard.classList.add("lore-article");
             articleCard.innerHTML = `
+                <span class="article-id">ID: ${article.id}</span> <!-- ✅ Added Article ID -->
                 <h3>${article.title}</h3>
                 <p class="caption">${article.caption || "No caption provided."}</p>
                 <p class="timestamp">${new Date(article.created_at).toLocaleString()}</p>
