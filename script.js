@@ -44,14 +44,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     async function checkAuth() {
         const { data: { user }, error } = await window.supabaseClient.auth.getUser();
-        
+
         if (error || !user) {
-            console.warn("User not authenticated.");
+            console.warn("❌ User not authenticated.");
             return null;
         }
 
-        console.log("Authenticated user:", user);
-        return user;
+        console.log("✅ Authenticated user:", user);
+        return user; // Return user object for role-based checking
     }
 
     await checkAuth();
