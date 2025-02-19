@@ -316,6 +316,7 @@ body.landing-page {
     color: #ffffff;
     margin-bottom: 20px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 /* Ensure the entire grid is centered */
