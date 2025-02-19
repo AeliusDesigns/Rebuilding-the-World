@@ -276,7 +276,8 @@ body.landing-page {
 /* Individual Race Cards */
 .race-card {
     background: #222;
-    border: 2px solid rgba(255, 255, 255, 0.1); 
+    border: none; 
+    background: linear-gradient(90deg, #222, #444);
     color: white;
     padding: 20px;
     text-align: center;
@@ -313,6 +314,7 @@ body.landing-page {
 
 /* Title Styling */
 #getting-started h2 {
+    display: block;
     font-size: 28px;
     color: #ffffff;
     margin-bottom: 20px;
@@ -352,7 +354,8 @@ body.landing-page {
 /* Individual Step Cards */
 .step-card {
     background: #222;
-    border: 2px solid rgba(255, 255, 255, 0.1); 
+    border: none; 
+    background: linear-gradient(90deg, #222, #444);
     color: white;
     padding: 30px;
     text-align: center;
