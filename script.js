@@ -1,5 +1,8 @@
 console.log("✅ script.js is running!");
 
+// ===========================
+// Ensure Elements Exist
+// ===========================
 const menuButton = document.getElementById("menu-button");
 const dropdownMenu = document.getElementById("dropdown-menu");
 
@@ -26,7 +29,7 @@ const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 window.supabaseClient = createClient(supabaseUrl, supabaseAnonKey); // Store in window
 
 // ===========================
-// Wait for DOM to Load
+// Wait for DOM to Load (Single Execution Flow)
 // ===========================
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("📜 script.js Loaded!");
@@ -54,86 +57,73 @@ document.addEventListener("DOMContentLoaded", async function () {
     await checkAuth();
 
     // ===========================
-    // Handle Dropdown Menu
+    // Handle Dropdown Menu (Refactored)
     // ===========================
-    console.log("📜 Initializing dropdown menu...");
+    if (menuButton && dropdownMenu) {
+        console.log("📜 Initializing dropdown menu...");
 
-    setTimeout(() => {
-        const menuButton = document.getElementById("menu-button");
-        const dropdownMenu = document.getElementById("dropdown-menu");
+        menuButton.addEventListener("click", function (event) {
+            event.stopPropagation();
+            console.log("✅ Menu button clicked!");
 
-        if (menuButton && dropdownMenu) {
-            console.log("✅ Menu button & dropdown menu found!");
+            dropdownMenu.classList.toggle("show");
+            menuButton.classList.toggle("active");
 
-            menuButton.addEventListener("click", function (event) {
-                event.stopPropagation();
-                console.log("✅ Menu button clicked!");
+            const isExpanded = dropdownMenu.classList.contains("show");
+            menuButton.setAttribute("aria-expanded", isExpanded);
+        });
 
-                dropdownMenu.classList.toggle("show");
-                menuButton.classList.toggle("active");
+        document.addEventListener("click", function (event) {
+            if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove("show");
+                menuButton.classList.remove("active");
+                menuButton.setAttribute("aria-expanded", "false");
+                console.log("❌ Dropdown menu closed");
+            }
+        });
+    }
 
-                const isExpanded = dropdownMenu.classList.contains("show");
-                menuButton.setAttribute("aria-expanded", isExpanded);
-            });
+    // ===========================
+    // Handle Map Layer Toggle (If on Map Page)
+    // ===========================
+    if (document.body.classList.contains("map-page")) {
+        console.log("🗺 Map Page Detected!");
 
-            document.addEventListener("click", function (event) {
-                if (!menuButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                    dropdownMenu.classList.remove("show");
-                    menuButton.classList.remove("active");
-                    menuButton.setAttribute("aria-expanded", "false");
-                    console.log("❌ Dropdown menu closed");
+        const buttons = document.querySelectorAll(".map-toggle");
+        const images = {
+            abovegroundBorders: document.getElementById("abovegroundBordersImg"),
+            abovegroundNames: document.getElementById("abovegroundNamesImg"),
+            belowgroundBorders: document.getElementById("belowgroundBordersImg"),
+            belowgroundNames: document.getElementById("belowgroundNamesImg"),
+        };
+
+        function selectLayer(selectedLayer) {
+            buttons.forEach(btn => btn.classList.remove("active"));
+
+            for (let key in images) {
+                if (images[key]) {
+                    images[key].style.display = "none";
                 }
-            });
-        } else {
-            console.error("❌ Menu button or dropdown menu NOT found!");
-        }
-    }, 500); // Delay by 500ms to ensure elements are loaded
-});
+            }
 
-// ===========================
-// Handle Map Layer Toggle
-// ===========================
-if (document.body.classList.contains("map-page")) {
-    console.log("Map Page Detected!");
+            const selectedButton = document.querySelector(`.map-toggle[data-layer="${selectedLayer}"]`);
+            if (selectedButton) {
+                selectedButton.classList.add("active");
+            }
 
-    const buttons = document.querySelectorAll(".map-toggle");
-    const images = {
-        abovegroundBorders: document.getElementById("abovegroundBordersImg"),
-        abovegroundNames: document.getElementById("abovegroundNamesImg"),
-        belowgroundBorders: document.getElementById("belowgroundBordersImg"),
-        belowgroundNames: document.getElementById("belowgroundNamesImg"),
-    };
-
-    function selectLayer(selectedLayer) {
-        // Remove "active" class from all buttons
-        buttons.forEach(btn => btn.classList.remove("active"));
-
-        // Hide all images
-        for (let key in images) {
-            if (images[key]) {
-                images[key].style.display = "none";
+            if (images[selectedLayer]) {
+                images[selectedLayer].style.display = "inline-block";
             }
         }
 
-        // Activate the clicked button & show corresponding map layer
-        const selectedButton = document.querySelector(`.map-toggle[data-layer="${selectedLayer}"]`);
-        if (selectedButton) {
-            selectedButton.classList.add("active");
-        }
-
-        if (images[selectedLayer]) {
-            images[selectedLayer].style.display = "inline-block";
-        }
-    }
-
-    // Add event listeners to buttons
-    buttons.forEach(button => {
-        button.addEventListener("click", function () {
-            const layer = this.getAttribute("data-layer");
-            selectLayer(layer);
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const layer = this.getAttribute("data-layer");
+                selectLayer(layer);
+            });
         });
-    });
-}
+    }
+});
 
 // ===========================
 // Upload File to Supabase
