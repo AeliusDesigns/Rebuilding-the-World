@@ -329,6 +329,7 @@ body.landing-page {
     gap: 30px; 
     max-width: 750px;
     margin: 0 auto;
+    margin-bottom: 40px;
 }
 
 /* Style for each row */
