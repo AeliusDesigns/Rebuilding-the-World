@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             const articleCard = document.createElement("div");
             articleCard.classList.add("lore-article");
 
-            // Convert UTC timestamp to the user's local time zone
-            const createdAt = new Date(article.created_at);
+            // UTC to Local Time Conversion
+            const createdAt = new Date(article.created_at + "Z"); // Treat as UTC
             const localTime = createdAt.toLocaleString(undefined, {
                 year: "numeric",
                 month: "short",
@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
 
             articleCard.innerHTML = `
-                <span class="article-id">ID: ${article.id}</span> <!-- ✅ Added Article ID -->
+                <span class="article-id">ID: ${article.id}</span>
                 <h3>${article.title}</h3>
                 <p class="caption">${article.caption || "No caption provided."}</p>
-                <p class="timestamp">${localTime}</p> <!-- ✅ Time auto-adjusts to user’s time zone -->
+                <p class="timestamp">${localTime}</p> <!-- ✅ Now shows the correct local time -->
                 <button class="view-article-btn" data-id="${article.id}">View</button>
             `;
 
