@@ -240,7 +240,7 @@ body.landing-page {
     text-transform: uppercase;
 }
 
-/* Race Grid (Fixed Gaps & Equal Sizing) */
+/* Race Grid */
 .race-grid {
     display: flex;
     flex-direction: column;
@@ -250,11 +250,11 @@ body.landing-page {
     margin: 0 auto;
 }
 
-/* Top row with 5 races (spaced evenly) */
+/* Top row with 5 races */
 .race-row {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Adds spacing between boxes */
+    gap: 20px; 
     width: 100%;
     max-width: 1000px;
 }
@@ -283,7 +283,7 @@ body.landing-page {
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
-    width: 180px;  /* Fixed size */
+    width: 180px; 
     height: 80px;
     display: flex;
     align-items: center;
@@ -295,13 +295,13 @@ body.landing-page {
 /* Hover Effect */
 .race-card:hover {
     background: #444;
-    border-color: #e0bf04; /* Gold glow */
+    border-color: #e0bf04;
     transform: translateY(-5px);
     box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
 }
 
 /* =========================== */
-/* Getting Started Section (Restored Sizing & Spacing) */
+/* Getting Started Section */
 /* =========================== */
 
 #getting-started {
@@ -331,7 +331,7 @@ body.landing-page {
 .step-row {
     display: flex;
     justify-content: center;
-    gap: 30px; /* Restored original spacing */
+    gap: 30px; 
     width: 100%;
     max-width: 1100px;
 }
@@ -350,11 +350,14 @@ body.landing-page {
     padding: 30px;
     text-align: center;
     border-radius: 10px;
-    width: 220px; /* Restored original size */
+    width: 220px; 
     height: 140px;
     position: relative;
     transition: all 0.3s ease-in-out;
+    font-weight: bold; 
+    font-size: 1.1rem; 
 }
+
 
 /* Step Number Styling */
 .step-circle {
@@ -429,7 +432,7 @@ body.lore-page {
     background-color: #121212;
     color: white;
     font-family: Arial, sans-serif;
-    padding-top: 80px; /* Prevents header overlap */
+    padding-top: 80px; 
 }
 
 /* Lore Content Section */
