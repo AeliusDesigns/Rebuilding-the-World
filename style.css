@@ -277,7 +277,6 @@ body.landing-page {
 .race-card {
     background: #222;
     border: none; 
-    background: linear-gradient(90deg, #222, #444);
     color: white;
     padding: 20px;
     text-align: center;
@@ -355,7 +354,6 @@ body.landing-page {
 .step-card {
     background: #222;
     border: none; 
-    background: linear-gradient(90deg, #222, #444);
     color: white;
     padding: 30px;
     text-align: center;
