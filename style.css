@@ -309,7 +309,7 @@ body.landing-page {
     text-align: center;
     padding: 50px 20px;
     margin-bottom: 40px;
-    padding-bottom: 40px;
+    min-height: 50px;
 }
 
 /* Title Styling */
