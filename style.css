@@ -276,20 +276,21 @@ body.landing-page {
 /* Individual Race Cards */
 .race-card {
     background: #222;
-    border: 2px solid #888;
+    border: 2px solid rgba(255, 255, 255, 0.1); 
     color: white;
     padding: 20px;
     text-align: center;
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
-    width: 180px; 
+    width: 180px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
 /* Hover Effect */
@@ -297,7 +298,7 @@ body.landing-page {
     background: #444;
     border-color: #e0bf04;
     transform: translateY(-5px);
-    box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
+    box-shadow: 0px 0px 10px rgba(224, 191, 4, 0.8);
 }
 
 /* =========================== */
@@ -351,16 +352,17 @@ body.landing-page {
 /* Individual Step Cards */
 .step-card {
     background: #222;
-    border: 2px solid #888;
+    border: 2px solid rgba(255, 255, 255, 0.1); 
     color: white;
     padding: 30px;
     text-align: center;
     border-radius: 10px;
-    width: 220px; 
+    width: 220px;
     height: 140px;
     transition: all 0.3s ease-in-out;
-    font-weight: bold; 
+    font-weight: bold;
     font-size: 1.1rem;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
 }
 
 /* Ensure captions are smaller and readable */
