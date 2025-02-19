@@ -236,7 +236,7 @@ body.landing-page {
 #available-races h2 {
     font-size: 28px;
     color: #ffffff; 
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     text-transform: uppercase;
 }
 
@@ -316,7 +316,7 @@ body.landing-page {
     display: block;
     font-size: 28px;
     color: #ffffff;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     text-transform: uppercase;
     text-align: center;
 }
