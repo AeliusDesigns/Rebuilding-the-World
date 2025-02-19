@@ -222,27 +222,28 @@ body.landing-page {
 
 #available-races h2 {
     font-size: 28px;
-    color: #ffffff;
+    color: #e0bf04; /* Gold accent */
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
-/* Race Grid (Manually Structured for Horizontal Rows) */
+/* Race Grid (Fixed Gaps & Equal Sizing) */
 .race-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
-/* Top row with 5 races (evenly spaced) */
+/* Top row with 5 races (spaced evenly) */
 .race-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px; /* Adds spacing between boxes */
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
 /* Single centered race in the second row */
@@ -260,7 +261,7 @@ body.landing-page {
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
-    width: 160px;
+    width: 180px;  /* Fixed size */
     height: 80px;
     display: flex;
     align-items: center;
@@ -272,13 +273,13 @@ body.landing-page {
 /* Hover Effect */
 .race-card:hover {
     background: #444;
-    border-color: #e0bf04;
+    border-color: #e0bf04; /* Gold glow */
     transform: translateY(-5px);
     box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
 }
 
 /* =========================== */
-/* Getting Started Section     */
+/* Getting Started Section (Restored Sizing & Spacing) */
 /* =========================== */
 
 #getting-started {
@@ -289,33 +290,34 @@ body.landing-page {
 
 #getting-started h2 {
     font-size: 28px;
-    color: #ffffff;
+    color: #e0bf04;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
 
-/* Getting Started Grid (Manually Structured for Horizontal Rows) */
+/* Getting Started Grid */
 .getting-started-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 /* Top row with 3 steps */
 .step-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 30px; /* Restored original spacing */
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
 }
 
 /* Second row with 2 centered steps */
 .step-row.centered {
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
 }
 
 /* Individual Step Cards */
@@ -323,19 +325,19 @@ body.landing-page {
     background: #222;
     border: 2px solid #888;
     color: white;
-    padding: 25px;
+    padding: 30px;
     text-align: center;
     border-radius: 10px;
-    width: 180px;
-    height: 130px;
+    width: 220px; /* Restored original size */
+    height: 140px;
     position: relative;
     transition: all 0.3s ease-in-out;
 }
 
 /* Step Number Styling */
 .step-circle {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     background: #e0bf04;
     color: black;
     font-weight: bold;
