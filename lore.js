@@ -147,48 +147,49 @@ document.addEventListener("DOMContentLoaded", async function () {
     // ===========================
     // Delete Articles
     // ===========================
-    deleteArticleBtn.addEventListener("click", async function () {
-    console.log("🗑 Attempting to delete an article...");
+        deleteArticleBtn.addEventListener("click", async function () {
+        console.log("🗑 Attempting to delete an article...");
 
-    const user = await checkAuth();
-    if (!user) {
-        alert("❌ You must be logged in to delete an article.");
-        return;
-    }
+        const user = await checkAuth();
+        if (!user) {
+            alert("❌ You must be logged in to delete an article.");
+            return;
+        }
 
-    const articleId = prompt("Enter the ID of the article to delete:");
-    if (!articleId) return alert("Article ID is required.");
+        const articleId = prompt("Enter the ID of the article to delete:");
+        if (!articleId) return alert("Article ID is required.");
 
-    const { data: article, error: fetchError } = await window.supabaseClient
-        .from("lore_articles")
-        .select("user_id")
-        .eq("id", articleId)
-        .single();
+        const { data: article, error: fetchError } = await window.supabaseClient
+            .from("lore_articles")
+            .select("user_id")
+            .eq("id", articleId)
+            .single();
 
-    if (fetchError || !article) {
-        console.error("❌ Error fetching article:", fetchError);
-        alert("Article not found or an error occurred.");
-        return;
-    }
+        if (fetchError || !article) {
+            console.error("❌ Error fetching article:", fetchError);
+            alert("Article not found or an error occurred.");
+            return;
+        }
 
-    // Ensure only the article creator can delete
-    if (article.user_id !== user.id) {
-        alert("❌ You are not authorized to delete this article.");
-        return;
-    }
+        // Ensure only the article creator can delete
+        if (article.user_id !== user.id) {
+            alert("❌ You are not authorized to delete this article.");
+            return;
+        }
 
-    const { error } = await window.supabaseClient
-        .from("lore_articles")
-        .delete()
-        .eq("id", articleId);
+        const { error } = await window.supabaseClient
+            .from("lore_articles")
+            .delete()
+            .eq("id", articleId);
 
-    if (error) {
-        console.error("❌ Error deleting article:", error);
-        alert("Failed to delete article.");
-        return;
-    }
+        if (error) {
+            console.error("❌ Error deleting article:", error);
+            alert("Failed to delete article.");
+            return;
+        }
 
-    alert("✅ Article deleted successfully!");
-    fetchArticles(); // Refresh articles
+        alert("✅ Article deleted successfully!");
+        fetchArticles(); // Refresh articles
+    });
+
 });
-
