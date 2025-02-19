@@ -227,11 +227,10 @@ body.landing-page {
     text-transform: uppercase;
 }
 
-/* Race Grid - Updated to Center Last Item */
+/* Race Grid */
 .race-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; 
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
     max-width: 1000px;
     margin: 0 auto;
@@ -248,7 +247,6 @@ body.landing-page {
     font-size: 18px;
     font-weight: bold;
     border-radius: 10px;
-    width: 150px; 
     height: 80px;
     display: flex;
     align-items: center;
@@ -257,18 +255,19 @@ body.landing-page {
     cursor: pointer;
 }
 
-/* Center the last item if it’s alone in a row */
-.race-grid:after {
-    content: "";
-    flex: auto;
-}
-
 /* Hover Effect */
 .race-card:hover {
     background: #444;
     border-color: #e0bf04; 
     transform: translateY(-5px);
     box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
+}
+
+/* Center the last race if it's alone */
+.race-grid:has(.race-card:nth-child(6)) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* =========================== */
@@ -290,9 +289,8 @@ body.landing-page {
 
 /* Getting Started Grid */
 .getting-started-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
     max-width: 1000px;
     margin: 0 auto;
@@ -309,7 +307,6 @@ body.landing-page {
     border-radius: 10px;
     position: relative;
     transition: all 0.3s ease-in-out;
-    width: 180px; 
 }
 
 /* Step Number Styling */
@@ -336,10 +333,11 @@ body.landing-page {
     box-shadow: 0px 0px 15px rgba(224, 191, 4, 0.8);
 }
 
-/* Center the last item in case of odd-numbered rows */
-.getting-started-grid:after {
-    content: "";
-    flex: auto;
+/* Center the last step if it's alone */
+.getting-started-grid:has(.step-card:nth-child(5)) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* =========================== */
